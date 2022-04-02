@@ -6,6 +6,7 @@ const History = () => {
       return (
             <div className="history_container">
                   <Header />
+                  
             </div>
       )
 }

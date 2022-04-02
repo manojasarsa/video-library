@@ -10,7 +10,7 @@ const Header = () => {
                   <div class="navigation nav_add flex flex_justify_between flex_align_center" id="header_box">
 
                         <div class="nav_left logo">
-                              <h3 className="logo_name">PLAY NOW</h3>
+                              <Link className="logo_name" to="/">PLAY NOW </Link>
                         </div>
                   
                         <div class="nav_right flex flex_justify_between flex_align_center">
