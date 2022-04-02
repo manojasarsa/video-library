@@ -16,3 +16,7 @@
 	font-family: var(--ff-barlow);
 	background-color: var(--grey-color);
 }
+
+.videolist {
+      gap: 2rem;
+}

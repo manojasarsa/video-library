@@ -8,20 +8,32 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
+    categoryName: "Music",
     description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+      "Music is the art of arranging sounds in time through the elements of melody, harmony, rhythm, and timbre.",
   },
   {
     _id: uuid(),
-    categoryName: "Frontend Development",
+    categoryName: "Vlogs",
     description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+      "A video blog or video log, sometimes shortened to vlog, is a form of blog for which the medium is video.",
   },
   {
     _id: uuid(),
-    categoryName: "Backend Development",
+    categoryName: "Standup Comedy",
     description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+      "Stand-up comedy is a comedy performance where a comedian performs in front of a live audience, often addressing them directly from the stage.",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Sports",
+    description:
+      "Watch all your sports related videos online at PLAY NOW.",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Web Dev",
+    description:
+      "Web development refers to the building, creating, and maintaining of websites.",
   },
 ];

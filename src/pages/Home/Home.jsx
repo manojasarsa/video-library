@@ -27,7 +27,7 @@ const Home = () => {
                         
                         <div className="category flex flex_justify_center flex_align_center">
                               <img className="category_img" src="assets/bandBlue.jpg" alt="band" />
-                              <h2 className="category_name">Music Bands</h2>
+                              <h2 className="category_name">Music</h2>
                         </div>
                         
                         <div className="category flex flex_justify_center flex_align_center">
