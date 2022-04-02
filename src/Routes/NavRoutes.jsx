@@ -24,33 +24,25 @@ const NavRoutes = () => {
               <Route 
                   path="/playlist" 
                   element= {
-                        <PrivateRoutes>
-                              <Playlist />
-                        </PrivateRoutes>
+                        <Playlist />
                   }
               ></Route>
               <Route 
                   path="/liked" 
                   element= {
-                        <PrivateRoutes>
-                              <Liked />
-                        </PrivateRoutes>
+                        <Liked />
                   }
               ></Route>
               <Route 
                   path="/watchlater" 
                   element= {
-                        <PrivateRoutes>
-                              <WatchLater />
-                        </PrivateRoutes>
+                        <WatchLater />
                   }
               ></Route>
               <Route 
                   path="/history" 
                   element= {
-                        <PrivateRoutes>
-                              <History />
-                        </PrivateRoutes>
+                        <History />
                   }
               ></Route>
               <Route path="/login" element = {<Login />} />

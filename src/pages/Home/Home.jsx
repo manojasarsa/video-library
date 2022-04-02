@@ -1,5 +1,6 @@
 import "./home.css";
 import { Header} from "../../components";
+
 const Home = () => {
     return (
         <div className="main_container">
