@@ -120,7 +120,7 @@ const SignUp = () => {
                         <p className="checkbox_notify">I accept all Terms & Conditions</p>
                     </div>
 
-                    <button onClick={(e) => formHandler(e)} disabled={termsAndCondition} className="btn btn_secondary">Create New Account</button>
+                    <button className="auth_btn" onClick={(e) => formHandler(e)} >Sign Up</button>
 
                     <p className="input_subheading"><Link id="input_subheading" to="/login">Already have an account {">"} </Link></p>
 

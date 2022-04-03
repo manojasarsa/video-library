@@ -32,7 +32,7 @@ const Login = () => {
                 
                 <form className="input_field flex flex_col">
 
-                    <h2 className="input_heading">Login</h2>
+                    <h2 className="input_heading">Sign In</h2>
 
                     <label className="input_label">Email address<span className="form_label">*</span>
                         <input 
@@ -64,11 +64,11 @@ const Login = () => {
                         <p className="checkbox_notify">Remember me</p>
                     </div>
 
-                    <p className="input_subheading"><Link id="input_subheading" to="/forgotpwd">Forgot your Password?</Link> </p>
+                    <button className="auth_btn" onClick={(e) => formHandler(e)} >Login</button>
 
-                    <button className=" btn btn_secondary" onClick={(e) => formHandler(e)} >Login</button>
+                    <p className="forgot_pwd_box"><Link className="forgot_pwd" to="/forgotpwd">Forgot your Password?</Link> </p>
 
-                    <p className="input_subheading"><Link id="input_subheading" to="/signup">Create New Account</Link> </p>
+                    <p className="input_subheading"><Link id="input_subheading" to="/signup"> Sign Up Now</Link> </p>
 
                 </form>
             </div>
