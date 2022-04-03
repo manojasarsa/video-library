@@ -30,8 +30,11 @@
 	color: var(--cta-prim-color);
 }
 
-.join_btn {
+.join_btn_container {
 	margin-top: 7rem;
+}
+
+.main_heading .join_btn {
 	font-size: 1rem;
 	cursor: pointer;
 	text-align: center;

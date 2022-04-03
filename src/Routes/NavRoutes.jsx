@@ -15,41 +15,48 @@ import { PrivateRoutes } from "./PrivateRoutes";
 const NavRoutes = () => {
       return (
           <Routes>
-              <Route path="/" element = {<Home />} />
-              <Route path="/videolisting" element = {<VideoListing />} />
-              <Route 
-                  path="*" 
-                  element = { <p>OOPS! Page Not Found</p> }>    
-              </Route>
-              <Route 
-                  path="/playlist" 
-                  element= {
-                        <Playlist />
-                  }
-              ></Route>
-              <Route 
-                  path="/liked" 
-                  element= {
-                        <Liked />
-                  }
-              ></Route>
-              <Route 
-                  path="/watchlater" 
-                  element= {
-                        <WatchLater />
-                  }
-              ></Route>
-              <Route 
-                  path="/history" 
-                  element= {
-                        <History />
-                  }
-              ></Route>
-              <Route path="/login" element = {<Login />} />
-              <Route path="/logout" element = {<Logout />} />
-              <Route path="/signup" element = {<SignUp />} />
-              <Route path="/forgotpwd" element = {<ForgotPwd />} />
-              <Route path="/mock" element = {<Mockman />} />
+                <Route path="/" element = {<Home />} />
+                <Route path="/videolisting" element = {<VideoListing />} />
+                
+                <Route 
+                    path="/playlist" 
+                    element= {
+                        <PrivateRoutes>
+                                <Playlist />
+                        </PrivateRoutes>
+                    }
+                ></Route>
+                <Route 
+                    path="/liked" 
+                    element= {
+                        <PrivateRoutes>
+                                <Liked />
+                        </PrivateRoutes>
+                    }
+                ></Route>
+                <Route 
+                    path="/watchlater" 
+                    element= {
+                        <PrivateRoutes>
+                                <WatchLater />
+                        </PrivateRoutes>
+                    }
+                ></Route>
+                <Route 
+                    path="/history" 
+                    element= {
+                        <PrivateRoutes>
+                                <History />
+                        </PrivateRoutes>
+                    }
+                ></Route>
+
+                <Route path="/login" element = {<Login />} />
+                <Route path="/logout" element = {<Logout />} />
+                <Route path="/signup" element = {<SignUp />} />
+                <Route path="/forgotpwd" element = {<ForgotPwd />} />
+                <Route path="/mock" element = {<Mockman />} />
+                <Route path="*" element = { <p>OOPS! Page Not Found</p> } />
           </Routes>
       )
 }

@@ -5,8 +5,7 @@ import { useVideos } from "../../contexts";
 const VideoListing = () => {
 
       const { videos } = useVideos();
-
-      console.log("videolist: ", videos);
+      
       return (
             <div>
                   <Header />

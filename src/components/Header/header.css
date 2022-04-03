@@ -62,3 +62,7 @@ header .nav_right span {
 #header_box {
       border: 0;
 }
+
+.nav_right .logout_btn {
+      font-size: 0.8rem;
+}

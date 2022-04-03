@@ -1,10 +1,12 @@
-// import { useAuth } from "../contexts/authContext";
-// import { Navigate } from "react-router-dom";
+import { useAuth } from "../contexts/authContext";
+import { Navigate } from "react-router-dom";
 
-// const PrivateRoutes = ({children}) => {
-// //     const { state } = useAuth();
+const PrivateRoutes = ({children}) => {
+    const { state } = useAuth();
 
-// //     return state.isAuth ? children : <Navigate to="/login" />;
-// }
+    console.log("isAuth:", state.isAuth);
 
-// export {PrivateRoutes};
+    return state.isAuth ? children : <Navigate to="/login" />;
+}
+
+export {PrivateRoutes};
