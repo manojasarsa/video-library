@@ -18,5 +18,9 @@
 }
 
 .videolist {
-      gap: 2rem;
+      display: grid;
+      height: 100vh;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      margin-top: 0.3rem;
 }

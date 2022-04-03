@@ -1,10 +1,12 @@
 import "./videolisting.css";
-import { Header} from "../../components";
+import { Header, VideoCard} from "../../components";
 import { useVideos } from "../../contexts";
 
 const VideoListing = () => {
 
       const { videos } = useVideos();
+
+      console.log("videolist: ", videos);
       return (
             <div>
                   <Header />
@@ -18,8 +20,8 @@ const VideoListing = () => {
                               <button className="nav_categories" >WEB DEV</button>
                         </div>
                         
-                        <div className="videolist flex  flex_justify_start flex_align_center">
-                              {videos.map((video) => <ul key={video._id}> <li><img src={video.image} /> </li></ul> )}
+                        <div className="videolist flex flex_wrap">
+                              {videos.map((item) => <VideoCard key={item._id} video={item} /> )}
                         </div>
                   </div>
             </div>

@@ -1,0 +1,84 @@
+.card_container {
+      width: 100%;
+      background-color: var(--prim-color);
+      /* border-radius: 1rem; */
+      cursor: pointer;
+      /* border: 1px solid greenyellow; */
+}
+
+.parent {
+      padding: 2rem;
+      gap: 25px;
+      justify-content: center;
+}
+
+.card_img {
+      object-fit: contain;
+      width: 100%;
+      height: fit-content;
+}
+
+.card_details_box {
+      gap: 10px;
+      padding: 0.5rem 0;
+      justify-content: space-around;
+}
+
+.card_title {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--white-color);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 18rem;
+}
+
+.channel_box {
+      gap: 5px;
+      padding: 0.3rem 0;
+      /* color: red; */
+}
+
+.creator_box {
+      gap: 0.4rem;
+}
+
+.channel_name {
+      font-size: 0.75rem;
+      color: grey;
+}
+
+.verify_icon {
+      color: grey;
+      margin-top: 0.15rem;
+      font-size: 0.75rem;
+      padding-left: 0rem;
+}
+
+.nav_right {
+      flex-basis: 30%;
+      gap: 1rem;
+}
+
+.sidebar_icons {
+      color: grey;
+      /* margin-top: 0.15rem; */
+      font-size: 0.8rem;
+}
+
+.avatar_img {
+      padding-left: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      object-fit: cover;
+      /* vertical-align: middle; */
+      border-color: var(--cta-prim-color);
+      border-style: groove;
+}
+
+
+
+
+

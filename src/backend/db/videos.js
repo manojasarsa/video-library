@@ -11,7 +11,7 @@ export const videos = [
     description: "Written by Mike Rosenberg Produced by Ed Sheeran and Joe Rubel ",
     creator: "Passenger",
     category: "Music",
-    image: "https://img.youtube.com/vi/KvHwcOllzjM/hqdefault.jpg",
+    vidImage: "https://img.youtube.com/vi/KvHwcOllzjM/hqdefault.jpg",
   },
   {
     _id: uuid(),
@@ -19,15 +19,15 @@ export const videos = [
     description: "learn about DOM scripting i.e. JS in the browser, calling servers, and getting data from there, taking user input and showing user output, and many more things.",
     creator: "Tanay Pratap",
     category: "Web Dev",
-    image: "https://img.youtube.com/vi/yLZazznWoAs/hqdefault.jpg",
+    vidImage: "https://img.youtube.com/vi/yLZazznWoAs/hqdefault.jpg",
   },
   {
     _id: uuid(),
-    title: "ABHISHEK UPMANYU |Friends, Crime, & The Cosmos",
+    title: "Friends, Crime, & The Cosmos",
     description: "Jokes about Friends, Crime Patrol and The Cosmos.",
     creator: "Abhishek Upmanyu",
     category: "Standup Comedy",
-    image: "https://img.youtube.com/vi/c7QYEedjb_o/hqdefault.jpg",
+    vidImage: "https://img.youtube.com/vi/c7QYEedjb_o/hqdefault.jpg",
   },
   {
     _id: uuid(),
@@ -35,15 +35,15 @@ export const videos = [
     description: "Vlog 63 My best flight as a Captain on Airbus 320.",
     creator: "Flying Beast",
     category: "Vlogs",
-    image: "https://img.youtube.com/vi/7DlE8EESsi8/hqdefault.jpg",
+    vidImage: "https://img.youtube.com/vi/7DlE8EESsi8/hqdefault.jpg",
   },
   {
     _id: uuid(),
     title: "Real Madrid 2 x 3 Barcelona ● ",
     description: "La Liga 16/17 Extended Goals & Highlights HD",
-    creator: "Manoj Asarsa",
+    creator: "RptimaoTV",
     category: "Sports",
-    image: "https://img.youtube.com/vi/i2kdIbn0Uoc/hqdefault.jpg",
+    vidImage: "https://img.youtube.com/vi/i2kdIbn0Uoc/hqdefault.jpg",
   },
   // {
   //   _id: uuid(),
@@ -52,7 +52,7 @@ export const videos = [
   //     "",
   //   creator: "Manoj Asarsa",
   //   category: "",
-  //   image: "",
+  //   vidImage: "",
   // },
   // {
   //   _id: uuid(),
@@ -61,7 +61,7 @@ export const videos = [
   //     "",
   //   creator: "Manoj Asarsa",
   //   category: "",
-  //   image: "",
+  //   vidImage: "",
   // },
   
 ];
