@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 export const videos = [
   {
     _id: uuid(),
-    title: "Passenger | Sword From The Stone ",
+    title: "Passenger | Sword From The Stone",
     description: "Written by Mike Rosenberg Produced by Ed Sheeran and Joe Rubel ",
     creator: "Passenger",
     category: "Music",
