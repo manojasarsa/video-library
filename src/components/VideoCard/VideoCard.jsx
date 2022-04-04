@@ -1,8 +1,7 @@
 import "./videocard.css";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useLikedList } from "../../contexts";
-import { useAuth } from "../../contexts";
+import { useAuth, useLikedList, useWatchLaterList } from "../../contexts";
 
 const VideoCard = ({video}) => {
 
@@ -10,9 +9,13 @@ const VideoCard = ({video}) => {
 
       const { likesState, addToLikedList, removeFromLikedList } = useLikedList();
 
+      const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
+
       const {  title, vidImage, creator } = video;
 
       const likedItemExist = likesState.likedItems.find((vid) => vid._id === video._id);
+
+      const watchLaterItemExist = watchLaterState.watchLaterItems.find((vid) => vid._id === video._id);
 
 
       return (
@@ -52,7 +55,19 @@ const VideoCard = ({video}) => {
                                                       </Link>
                                                       }
 
-                                                      <FaIcons.FaClock className="sidebar_icons" />
+                                                      { watchLaterItemExist
+                                                      ? <button className="icon_btns" onClick={() => removeFromWatchLaterList(video._id)}>
+                                                            <i className="fa fa-clock like_icons"></i>
+                                                      </button>
+                                                      : state.isAuth ? <button className="icon_btn" onClick={() => addToWatchLaterList(video)}>
+                                                            <i className="far fa-clock like_icons"></i>
+                                                      </button>
+                                                      : <Link className="icon_btn" to="/login" onClick={() => addToWatchLaterList(video)}>
+                                                            <i className="far fa-clock like_icons"></i>
+                                                      </Link>
+                                                      }
+
+                                                      {/* <FaIcons.FaClock className="sidebar_icons" /> */}
                                                       <FaIcons.FaFolderPlus className="sidebar_icons" />
                                                 </div>
                                           </div>
