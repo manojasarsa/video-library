@@ -1,14 +1,5 @@
 import Mockman from "mockman-js";
-import { Home } from "../pages";
-import { VideoListing } from "../pages";
-import { Playlist } from "../pages";
-import { Liked } from "../pages";
-import { WatchLater } from "../pages";
-import { History } from "../pages";
-import { Login } from "../pages";
-import { Logout } from "../pages";
-import { SignUp } from "../pages";
-import { ForgotPwd } from "../pages";
+import { Home, VideoListing, Playlist, Liked, WatchLater, History, Login, Logout, SignUp, ForgotPwd } from "../pages";
 import { Routes, Route } from "react-router-dom";
 import { PrivateRoutes } from "./PrivateRoutes";
 

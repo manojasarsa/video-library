@@ -44,24 +44,5 @@ export const videos = [
     creator: "RptimaoTV",
     category: "Sports",
     vidImage: "https://img.youtube.com/vi/i2kdIbn0Uoc/hqdefault.jpg",
-  },
-  // {
-  //   _id: uuid(),
-  //   title: "",
-  //   description:
-  //     "",
-  //   creator: "Manoj Asarsa",
-  //   category: "",
-  //   vidImage: "",
-  // },
-  // {
-  //   _id: uuid(),
-  //   title: "",
-  //   description:
-  //     "",
-  //   creator: "Manoj Asarsa",
-  //   category: "",
-  //   vidImage: "",
-  // },
-  
+  },  
 ];
