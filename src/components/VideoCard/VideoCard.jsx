@@ -11,11 +11,11 @@ const VideoCard = ({video}) => {
 
       const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
 
-      const {  title, vidImage, creator } = video;
+      const { title, vidImage, creator } = video;
 
       const likedItemExist = likesState.likedItems.find((vid) => vid._id === video._id);
 
-      const watchLaterItemExist = watchLaterState.watchLaterItems.find((vid) => vid._id === video._id);
+      const watchLaterItemExist = watchLaterState.watchLaterItems.find((item) => item._id === video._id);
 
 
       return (

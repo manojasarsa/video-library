@@ -1,6 +1,7 @@
 #auth_container {
     margin: 0 auto;
     margin-top: 10rem;
+    margin-bottom: 5rem;
     padding-bottom: 1rem;
     box-shadow: none;
     font-family: var(--ff-barlow);

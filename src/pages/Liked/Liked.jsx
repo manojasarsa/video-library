@@ -16,11 +16,6 @@ const Liked = () => {
                   ?
                   <div>
 
-                        { likedListCounter === 0 
-                              ? <h2 className="cart_title">LIKED VIDEOS </h2>
-                              : <h2 className="cart_title">LIKED VIDEOS({likedListCounter})</h2>
-                        }
-
                         <div className="liked_list videolist flex flex_wrap">
                               {likesState.likedItems.map((video) => <VideoCard key={video._id} video={video} /> )}
                         </div>

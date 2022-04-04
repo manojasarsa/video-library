@@ -3,7 +3,7 @@ const watchLaterReducer = (state, action) => {
 	case "SET_WATCHLATER_LIST":
 		return {
 			...state,
-			likedItems: action.payload,
+			watchLaterItems: action.payload,
 		};
 		default:
 			return state;
