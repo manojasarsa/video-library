@@ -15,3 +15,8 @@ body {
       background-color: var(--prim-color);
 	color: var(--sec-color);
 }
+
+button {
+      background-color: var(--prim-color);
+      border: none;
+}
