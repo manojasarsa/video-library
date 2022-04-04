@@ -1,8 +1,8 @@
 import "./videocard.css";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useLikedList } from "../../contexts";
-import { useAuth } from "../../contexts";
+import { useAuth, useLikedList, useWatchLaterList } from "../../contexts";
+// import { VideoIframe } from "../../utils/VideoIframe";
 
 const VideoCard = ({video}) => {
 
@@ -10,10 +10,17 @@ const VideoCard = ({video}) => {
 
       const { likesState, addToLikedList, removeFromLikedList } = useLikedList();
 
-      const {  title, vidImage, creator } = video;
+      const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
+
+      const { title, vidImage, creator } = video;
 
       const likedItemExist = likesState.likedItems.find((vid) => vid._id === video._id);
 
+      const watchLaterItemExist = watchLaterState.watchLaterItems.find((item) => item._id === video._id);
+
+      // const playVideo = VideoIframe(video._id);
+
+      // console.log(playVideo);
 
       return (
             
@@ -21,7 +28,9 @@ const VideoCard = ({video}) => {
                   <div className="card_vertical">
                         <div className="card_vertical_info flex flex_col flex_justify_start">
 
-                              <img className="img_responsive adjust_image" src={vidImage} alt={title} />
+                              {/* <img className="img_responsive adjust_image" src={vidImage} alt={title} /> */}
+
+                              {/* {playVideo} */}
                               
                               <div className="card_details_box flex ">
                                     
@@ -52,7 +61,19 @@ const VideoCard = ({video}) => {
                                                       </Link>
                                                       }
 
-                                                      <FaIcons.FaClock className="sidebar_icons" />
+                                                      { watchLaterItemExist
+                                                      ? <button className="icon_btns" onClick={() => removeFromWatchLaterList(video._id)}>
+                                                            <i className="fa fa-clock like_icons"></i>
+                                                      </button>
+                                                      : state.isAuth ? <button className="icon_btn" onClick={() => addToWatchLaterList(video)}>
+                                                            <i className="far fa-clock like_icons"></i>
+                                                      </button>
+                                                      : <Link className="icon_btn" to="/login" onClick={() => addToWatchLaterList(video)}>
+                                                            <i className="far fa-clock like_icons"></i>
+                                                      </Link>
+                                                      }
+
+                                                      {/* <FaIcons.FaClock className="sidebar_icons" /> */}
                                                       <FaIcons.FaFolderPlus className="sidebar_icons" />
                                                 </div>
                                           </div>
