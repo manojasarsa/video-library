@@ -1,20 +1,9 @@
 import axios from "axios";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
+import { likesReducer } from "../reducer/authReducer";
 
 const LikesContext = createContext();
-
-const likesReducer = (state, action) => {
-	switch (action.type) {
-	case "SET_LIKED_LIST":
-		return {
-			...state,
-			likedItems: action.payload,
-		};
-		default:
-			return state;
-	}
-};
 
 const LikesProvider = ({ children }) => {
       
