@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
-import { likesReducer } from "../reducer/authReducer";
+import { likesReducer } from "../reducer/likesReducer";
 
 const LikesContext = createContext();
 
@@ -53,7 +53,7 @@ const LikesProvider = ({ children }) => {
 
 	const removeFromLikedList = async (videoId) => {
 	  	try {
-			const response = await axios.delete(`/api/user/wishlist/${videoId}` ,
+			const response = await axios.delete(`/api/user/likes/${videoId}` ,
 			{
 				headers: { authorization: token }
 			});

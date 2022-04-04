@@ -1,9 +1,19 @@
 import "./videocard.css";
 import * as FaIcons from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useLikedList } from "../../contexts";
+import { useAuth } from "../../contexts";
 
 const VideoCard = ({video}) => {
 
+      const { state } = useAuth();
+
+      const { likesState, addToLikedList, removeFromLikedList } = useLikedList();
+
       const {  title, vidImage, creator } = video;
+
+      const likedItemExist = likesState.likedItems.find((vid) => vid._id === video._id);
+
 
       return (
             
@@ -29,7 +39,19 @@ const VideoCard = ({video}) => {
                                                 </div>
                                                 
                                                 <div className="icon_box flex flex_justify_between flex_align_center">
-                                                      <FaIcons.FaThumbsUp className="sidebar_icons" />
+
+                                                      { likedItemExist
+                                                      ? <button className="icon_btns" onClick={() => removeFromLikedList(video._id)}>
+                                                            <i className="fa fa-thumbs-up like_icons"></i>
+                                                      </button>
+                                                      : state.isAuth ? <button className="icon_btn" onClick={() => addToLikedList(video)}>
+                                                            <i className="far fa-thumbs-up like_icons"></i>
+                                                      </button>
+                                                      : <Link className="icon_btn" to="/login" onClick={() => addToLikedList(video)}>
+                                                            <i className="far fa-thumbs-up like_icons"></i>
+                                                      </Link>
+                                                      }
+
                                                       <FaIcons.FaClock className="sidebar_icons" />
                                                       <FaIcons.FaFolderPlus className="sidebar_icons" />
                                                 </div>
