@@ -58,7 +58,6 @@ const VideoCard = ({video}) => {
                                           </div>
                                     </div>  
                               </div>
-
                         </div>
                   </div>
             </div>
