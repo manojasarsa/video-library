@@ -21,7 +21,7 @@ const Liked = () => {
                               : <h2 className="cart_title">LIKED VIDEOS({likedListCounter})</h2>
                         }
 
-                        <div className="videolist flex flex_wrap">
+                        <div className="liked_list videolist flex flex_wrap">
                               {likesState.likedItems.map((video) => <VideoCard key={video._id} video={video} /> )}
                         </div>
 
@@ -31,7 +31,7 @@ const Liked = () => {
                         <div className="list_container flex flex_col flex_justify_center flex_align_center">
                               <i className="fa-solid fa-thumbs-up music_icon"></i>
                               <h3 className="playlist_title">No Liked Video</h3>
-                              <i className="fa-solid fa-plus add_btn"></i>
+                              <Link to="/videolisting"> <i className="fa-solid fa-plus add_btn"></i> </Link>
                         </div>
                   </div>
                   }
