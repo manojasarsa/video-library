@@ -1,6 +1,7 @@
 import "./header.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
 
@@ -16,11 +17,32 @@ const Header = () => {
                         </div>
                   
                         <div class="nav_right flex flex_justify_between flex_align_center">
-                              <Link className="nav_btn" to="/videolisting">EXPLORE</Link>
-                              <Link className="nav_btn" to="/playlist">PLAYLIST</Link>
-                              <Link className="nav_btn" to="/liked">LIKED</Link>
-                              <Link className="nav_btn" to="/watchlater">WATCH LATER</Link>
-                              <Link className="nav_btn" to="/history">HISTORY</Link>
+
+                              <NavLink className="nav_btn" to="/videolisting" 
+                                    style={({ isActive }) =>isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' } } >
+                                    EXPLORE
+                              </NavLink>
+
+                              <NavLink className="nav_btn" to="/playlist" 
+                                    style={({ isActive }) =>isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' } } >
+                                    PLAYLIST
+                              </NavLink>
+
+                              <NavLink className="nav_btn" to="/liked" 
+                                    style={({ isActive }) =>isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' } } >
+                                    LIKED
+                              </NavLink>
+
+                              <NavLink className="nav_btn" to="/watchlater" 
+                                    style={({ isActive }) =>isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' } } >
+                                    WATCH LATER
+                              </NavLink>
+
+                              <NavLink className="nav_btn" to="/history" 
+                                    style={({ isActive }) =>isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' } } >
+                                    HISTORY
+                              </NavLink>
+
                               {state.isAuth && 
                                     <Link className="nav_btn" to="/logout">
                                           <i onClick={logout} className="fa-solid fa-right-from-bracket logout_btn"></i>
