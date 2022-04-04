@@ -1,0 +1,29 @@
+.videos_container {
+      height: 100vh;
+      margin: 13rem 7.8rem 0 6.5rem;
+}
+
+.nav_categories {
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+	padding: 0 0.3rem;
+	letter-spacing: 0.1rem;
+	transition: all 0.8s ease-out;
+	color: var(--primary-color);
+	font-family: var(--ff-barlow);
+	background-color: var(--grey-color);
+      border: none;
+}
+
+.nav_categories:hover {
+      background-color: var(--line-color);
+}
+
+.videolist {
+      display: grid;
+      height: 100vh;
+      grid-gap: 2.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      margin-top: 5rem;
+}

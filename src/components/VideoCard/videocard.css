@@ -1,0 +1,61 @@
+.card_details_box {
+      padding: 1rem 0;
+}
+
+.adjust_image {
+      cursor: pointer;
+}
+
+.avatar_img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border-style: groove;
+      vertical-align: middle;
+      border-color: var(--cta-sec-color);
+}
+
+.video_details_box {
+      padding-left: 0.5rem;
+}
+
+.card_title {
+      font-size: 0.9rem;
+      font-weight: 400;
+      overflow: hidden;
+      width: 19rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: var(--white-color);
+}
+
+.channel_box {
+      padding: 0.3rem 0;
+}
+
+.creator_box {
+      gap: 0.4rem;
+}
+
+.channel_name {
+      font-size: 0.75rem;
+      color: var(--grey-color);
+}
+
+.verify_icon {
+      margin-top: 0.15rem;
+      font-size: 0.75rem;
+      color: var(--grey-color);
+}
+
+.icon_box {
+      flex-basis: 30%;
+      gap: 1.8rem;
+}
+
+.sidebar_icons {
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--grey-color);
+}

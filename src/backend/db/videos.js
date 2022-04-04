@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 /**
  * Videos Database can be added here.
  * You can add videos of your wish with different attributes
@@ -5,17 +6,43 @@
 
 export const videos = [
   {
-    _id: "Wo5dMEP_BbI",
-    title: "Awesome Video about Coding",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
-    creator: "Soham Shah",
+    _id: uuid(),
+    title: "Passenger | Sword From The Stone",
+    description: "Written by Mike Rosenberg Produced by Ed Sheeran and Joe Rubel ",
+    creator: "Passenger",
+    category: "Music",
+    vidImage: "https://img.youtube.com/vi/KvHwcOllzjM/hqdefault.jpg",
   },
   {
-    _id: "F_Riqjdh2oM",
-    title: "Neural Networks from Scratch - P.1 Intro and Neuron Code",
-    creator: "Sentdex",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+    _id: uuid(),
+    title: "JavaScript in the browser!",
+    description: "learn about DOM scripting i.e. JS in the browser, calling servers, and getting data from there, taking user input and showing user output, and many more things.",
+    creator: "Tanay Pratap",
+    category: "Web Dev",
+    vidImage: "https://img.youtube.com/vi/yLZazznWoAs/hqdefault.jpg",
   },
+  {
+    _id: uuid(),
+    title: "Friends, Crime, & The Cosmos",
+    description: "Jokes about Friends, Crime Patrol and The Cosmos.",
+    creator: "Abhishek Upmanyu",
+    category: "Standup Comedy",
+    vidImage: "https://img.youtube.com/vi/c7QYEedjb_o/hqdefault.jpg",
+  },
+  {
+    _id: uuid(),
+    title: "Best Flight as a Captain | Flying Beast",
+    description: "Vlog 63 My best flight as a Captain on Airbus 320.",
+    creator: "Flying Beast",
+    category: "Vlogs",
+    vidImage: "https://img.youtube.com/vi/7DlE8EESsi8/hqdefault.jpg",
+  },
+  {
+    _id: uuid(),
+    title: "Real Madrid 2 x 3 Barcelona ● ",
+    description: "La Liga 16/17 Extended Goals & Highlights HD",
+    creator: "RptimaoTV",
+    category: "Sports",
+    vidImage: "https://img.youtube.com/vi/i2kdIbn0Uoc/hqdefault.jpg",
+  },  
 ];
