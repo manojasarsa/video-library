@@ -1,6 +1,6 @@
 import "./videocard.css";
 import * as FaIcons from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth, useLikedList, useWatchLaterList, useHistoryList } from "../../contexts";
 
 const VideoCard = ({video}) => {
@@ -11,7 +11,7 @@ const VideoCard = ({video}) => {
 
       const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
 
-      const { historyState, addToHistoryList, removeFromHistoryList, removeAllHistory } = useHistoryList();
+      const { historyState, addToHistoryList, removeFromHistoryList } = useHistoryList();
 
       const { title, vidImage, creator, _id } = video;
 
@@ -21,6 +21,13 @@ const VideoCard = ({video}) => {
 
       const historyItemExist = historyState.historyItems.find((item) => item._id === video._id);
 
+      let location = useLocation();
+
+      // console.log("location:", location.pathname);
+
+      const isHistory = location.pathname === "/history";
+      console.log("isHistory:", isHistory);
+
       return (
             
             <div className="card_image flex">
@@ -28,11 +35,19 @@ const VideoCard = ({video}) => {
                         <div className="card_vertical_info flex flex_col flex_justify_start">
 
                               {historyItemExist
-                              ? <Link to = {`/videos/${_id}`}>
+                              ? ( <>
+
+                              <Link to = {`/videos/${_id}`}>
                                     <img className="img_responsive adjust_image" src={vidImage} alt={title} />
                               </Link>
-                              : <Link to = {`/videos/${_id}`}>
-                                    onClick={() => addToHistoryList(video)}
+                              {isHistory && <Link to="/history" className="icon_btn" onClick={() => removeFromHistoryList(video._id)}>
+                                    <i className="far fa-trash-can delete_btn"></i>
+                              </Link> }
+
+                              </>)
+
+                              : <Link to = {`/videos/${_id}`}
+                                    onClick={() => addToHistoryList(video)}>
                                     <img className="img_responsive adjust_image" src={vidImage} alt={title} />
                               </Link>
                               }

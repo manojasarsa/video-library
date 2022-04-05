@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
-// import { likesReducer } from "../reducer/likesReducer";
 
 const HistoryContext = createContext();
 
@@ -71,14 +70,14 @@ const HistoryProvider = ({ children }) => {
 			});
 
 			if(response.status === 200 ) {
-				historyDispatch({type: "SET_HISTORY_LIST", payload: response.data.likes})
+				historyDispatch({type: "SET_HISTORY_LIST", payload: response.data.history})
 			}
 	  	} catch(err) {
 		  	console.error("error occured", err.message);
 	  	}
   	}
 
-      const removeAllHistory = async (videoId) => {
+      const removeAllHistory = async () => {
       try {
             const response = await axios.delete("/api/user/history/all" ,
             {

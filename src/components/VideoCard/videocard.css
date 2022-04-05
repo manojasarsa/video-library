@@ -68,3 +68,18 @@
       color: var(--grey-color);
       background-color: var(--prim-color);
 }
+
+.icon_btn .delete_btn {
+      position: absolute;
+      font-size: 0.8rem;
+      border: none;
+      top: 1rem;
+      right:1rem;
+      cursor: pointer;
+      color: var(--grey-color);
+      background-color: var(--prim-color);
+}
+
+.icon_btn .delete_btn:hover {
+      color: var(--white-color);
+}
