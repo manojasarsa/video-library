@@ -4,7 +4,28 @@ import { useVideos } from "../../contexts";
 
 const VideoListing = () => {
 
-      const { videos } = useVideos();
+      const { videosState } = useVideos();
+
+      const { videos, categories } = videosState;
+
+
+      // const getFilteredList = (videoList, categories) => {
+      //       const filteredList = [];
+
+      //       let count = 0;
+      //       for (let category in categories) {
+      //             if (categories[category]) {
+      //                   let newList = videoList.filter((item) => category === item.categoryName.toLowerCase());
+      //                   filteredList.push(...newList);
+      //             } else {
+      //                   count ++;
+      //             }
+      //       }
+      //       return count === 5 ? videoList : filteredList;
+      // }
+
+
+      // const filteredList = getFilteredList(videos, categories);
       
       return (
             <div>

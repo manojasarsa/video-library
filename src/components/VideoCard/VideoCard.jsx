@@ -2,7 +2,6 @@ import "./videocard.css";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useAuth, useLikedList, useWatchLaterList } from "../../contexts";
-import { VideoIframe } from "../../utils/VideoIframe";
 
 const VideoCard = ({video}) => {
 
@@ -40,7 +39,7 @@ const VideoCard = ({video}) => {
 
                                                 <div className="creator_box flex">
                                                       <div className="channel_name"> {creator} </div>
-                                                      <FaIcons.FaCheckCircle className="verify_icon" />
+                                                      <i className="verfiy_icon fa-solid fa-circle-check"></i>
                                                 </div>
                                                 
                                                 <div className="icon_box flex flex_justify_between flex_align_center">
