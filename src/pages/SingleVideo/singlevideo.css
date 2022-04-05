@@ -1,0 +1,45 @@
+.single_video_container {
+      margin-top: 12rem;
+}
+
+.single_video_wrapper {
+      max-width: 100rem;
+      width: fit-content;
+      margin: 0 auto;      
+}
+
+.channel_info {
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      color: var(--white-color);
+}
+
+.nav_icons {
+      gap: 4rem;
+}
+
+
+.icons_box {
+      flex-basis: 10%;
+      gap: 8rem;
+      justify-self: flex-start;
+      padding: 1rem 0;
+}
+
+.navigate_icons {
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--grey-color);
+}
+
+.action_icons {
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+      color: var(--grey-color);
+      background-color: var(--prim-color);
+}
+
+.creator_name i {
+      padding-left: 0.5rem;
+}

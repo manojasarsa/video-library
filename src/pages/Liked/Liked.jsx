@@ -1,6 +1,6 @@
 import "./liked.css";
 import { Link } from "react-router-dom";
-import { Header, VideoCard} from "../../components";
+import { Header, VideoCard } from "../../components";
 import { useLikedList } from "../../contexts";
 
 const Liked = () => {
