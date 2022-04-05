@@ -1,7 +1,7 @@
 import "./videocard.css";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useAuth, useLikedList, useWatchLaterList } from "../../contexts";
+import { useAuth, useLikedList, useWatchLaterList, useHistoryList } from "../../contexts";
 
 const VideoCard = ({video}) => {
 
@@ -11,11 +11,15 @@ const VideoCard = ({video}) => {
 
       const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
 
+      const { historyState, addToHistoryList, removeFromHistoryList, removeAllHistory } = useHistoryList();
+
       const { title, vidImage, creator, _id } = video;
 
       const likedItemExist = likesState.likedItems.find((vid) => vid._id === video._id);
 
       const watchLaterItemExist = watchLaterState.watchLaterItems.find((item) => item._id === video._id);
+
+      const historyItemExist = historyState.historyItems.find((item) => item._id === video._id);
 
       return (
             

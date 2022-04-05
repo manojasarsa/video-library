@@ -1,19 +1,34 @@
 import "./history.css";
-
-import { Header} from "../../components";
+import { useHistoryList }  from "../../contexts";
+import { Header, VideoCard} from "../../components";
+import { Link } from "react-router-dom";
 
 const History = () => {
+
+
+      const { historyState } = useHistoryList(); 
+      const historyCounter = historyState.historyItems.length;
       return (
             <div>
                   <Header />
                   
-                  <div className="list_wrapper">
-                        <div className="list_container flex flex_col flex_justify_center flex_align_center">
-                              <i className="fa-solid fa-clock music_icon"></i>
-                              <h3 className="playlist_title">No History</h3>
-                              <button className="nav_categories">Start watching</button>
+                  { historyCounter !== 0
+                  ?
+                  <div>
+                        <div className="liked_list videolist flex flex_wrap">
+                              {historyState.historyItems.map((video) => <VideoCard key={video._id} video={video} /> )}
                         </div>
                   </div>
+                  : 
+                  <div className="list_wrapper">
+                        <div className="list_container flex flex_col flex_justify_center flex_align_center">
+                              <i className="fa-solid fa-thumbs-up music_icon"></i>
+                              <h3 className="playlist_title">No Liked Video</h3>
+                              <Link to="/videolisting"> <i className="fa-solid fa-plus add_btn"></i> </Link>
+                        </div>
+                  </div>
+                  }
+
             </div>
       )
 }
