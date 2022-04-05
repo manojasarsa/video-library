@@ -2,7 +2,7 @@ import "./videocard.css";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useAuth, useLikedList, useWatchLaterList } from "../../contexts";
-// import { VideoIframe } from "../../utils/VideoIframe";
+import { VideoIframe } from "../../utils/VideoIframe";
 
 const VideoCard = ({video}) => {
 
@@ -12,15 +12,11 @@ const VideoCard = ({video}) => {
 
       const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
 
-      const { title, vidImage, creator } = video;
+      const { title, vidImage, creator, _id } = video;
 
       const likedItemExist = likesState.likedItems.find((vid) => vid._id === video._id);
 
       const watchLaterItemExist = watchLaterState.watchLaterItems.find((item) => item._id === video._id);
-
-      // const playVideo = VideoIframe(video._id);
-
-      // console.log(playVideo);
 
       return (
             
@@ -28,9 +24,9 @@ const VideoCard = ({video}) => {
                   <div className="card_vertical">
                         <div className="card_vertical_info flex flex_col flex_justify_start">
 
-                              {/* <img className="img_responsive adjust_image" src={vidImage} alt={title} /> */}
-
-                              {/* {playVideo} */}
+                              <Link to = {`/videos/${_id}`}>
+                                    <img className="img_responsive adjust_image" src={vidImage} alt={title} />
+                              </Link>
                               
                               <div className="card_details_box flex ">
                                     
@@ -73,7 +69,6 @@ const VideoCard = ({video}) => {
                                                       </Link>
                                                       }
 
-                                                      {/* <FaIcons.FaClock className="sidebar_icons" /> */}
                                                       <FaIcons.FaFolderPlus className="sidebar_icons" />
                                                 </div>
                                           </div>
