@@ -23,10 +23,7 @@ const VideoCard = ({video}) => {
 
       let location = useLocation();
 
-      // console.log("location:", location.pathname);
-
       const isHistory = location.pathname === "/history";
-      console.log("isHistory:", isHistory);
 
       return (
             
