@@ -1,51 +1,52 @@
 import "./videolisting.css";
+import { useReducer } from "react";
 import { Header, VideoCard} from "../../components";
 import { useVideos } from "../../contexts";
+import { categoryReducer } from "../../reducer/categoryReducer";
 
 const VideoListing = () => {
 
-      const { videosState, videosDispa} = useVideos();
+const [ categoryState, categoryDispatch ] = useReducer(categoryReducer, {
+categoryName: ""
+});
 
-      const { videos, categories } = videosState;
+const { videosState } = useVideos();
 
+const { videos } = videosState;
 
-      // const getFilteredList = (videoList, categories) => {
-      //       const filteredList = [];
+const getFilteredList = (videoList, category) => {
+const newList = videoList.filter((item) => item.category === category);
+console.log("newList:", newList);
+return newList.length > 0 ? newList : videoList
+}
 
-      //       let count = 0;
-      //       for (let category in categories) {
-      //             if (categories[category]) {
-      //                   let newList = videoList.filter((item) => category === item.categoryName.toLowerCase());
-      //                   filteredList.push(...newList);
-      //             } else {
-      //                   count ++;
-      //             }
-      //       }
-      //       return count === 5 ? videoList : filteredList;
-      // }
+const filteredList = getFilteredList(videos, categoryState.categoryName);
 
+return (
+<div>
+      <Header />
 
-      // const filteredList = getFilteredList(videos, categories);
-      
-      return (
-            <div>
-                  <Header />
-
-                  <div className="videos_container">
-                        <div class="nav_right flex flex_justify_between flex_align_center">
-                              <button className="nav_categories" >MUSIC</button>
-                              <button className="nav_categories" >VLOGS</button>
-                              <button className="nav_categories" >STANDUP COMEDY</button>
-                              <button className="nav_categories" >SPORTS</button>
-                              <button className="nav_categories" >WEB DEV</button>
-                        </div>
-                        
-                        <div className="videolist flex flex_wrap">
-                              {videos.map((item) => <VideoCard key={item._id} video={item} /> )}
-                        </div>
-                  </div>
+      <div className="videos_container">
+            <div class="nav_right flex flex_justify_between flex_align_center">
+                  <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "MUSIC"})}
+                        className="nav_categories" >MUSIC</button>
+                  <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "VLOGS"})}
+                        className="nav_categories" >VLOGS</button>
+                  <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "STANDUP COMEDY"})}
+                        className="nav_categories" >STANDUP COMEDY</button>
+                  <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "SPORTS"})}
+                        className="nav_categories" >SPORTS</button>
+                  <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "WEB DEV"})}
+                        className="nav_categories" >WEB DEV</button>
             </div>
-      );
+
+            <div className="videolist flex flex_wrap">
+                  {filteredList.map((item) =>
+                  <VideoCard key={item._id} video={item} />)}
+            </div>
+      </div>
+</div>
+);
 }
 
 export {VideoListing};
