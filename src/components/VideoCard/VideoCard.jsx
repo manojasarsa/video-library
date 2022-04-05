@@ -27,9 +27,15 @@ const VideoCard = ({video}) => {
                   <div className="card_vertical">
                         <div className="card_vertical_info flex flex_col flex_justify_start">
 
-                              <Link to = {`/videos/${_id}`}>
+                              {historyItemExist
+                              ? <Link to = {`/videos/${_id}`}>
                                     <img className="img_responsive adjust_image" src={vidImage} alt={title} />
                               </Link>
+                              : <Link to = {`/videos/${_id}`}>
+                                    onClick={() => addToHistoryList(video)}
+                                    <img className="img_responsive adjust_image" src={vidImage} alt={title} />
+                              </Link>
+                              }
                               
                               <div className="card_details_box flex ">
                                     
