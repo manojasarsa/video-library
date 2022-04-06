@@ -25,12 +25,12 @@ const playlistReducer = (state, action) => {
                         ...state,
                         playlistsItems: action.payload,
                   };
-            case "ADD_TO_PLAYLIST":
+            case "ADD_VIDEO_TO_PLAYLIST":
                   return {
                         ...state,
                         playlistsItems: state.playlistsItems.map((playlist) => playlist._id === action.payload._id ? action.payload : playlist) 
                   };
-            case "DELETE_FROM_PLAYLIST":
+            case "DELETE_VIDEO_FROM_PLAYLIST":
                   return {
                         ...state,
                         playlistsItems: state.playlistsItems.map((playlist) => playlist._id === action.payload._id ? action.payload : playlist)
@@ -106,7 +106,7 @@ const PlaylistProvider = ({ children }) => {
 	  	}
   	}
 
-      const addToPlaylist = async (playlistId, video) => {
+      const addVideoToPlaylist = async (playlistId, video) => {
             try {
                   const response = await axios.delete(`/api/user/playlists/${playlistId}` ,
                   {
@@ -118,7 +118,7 @@ const PlaylistProvider = ({ children }) => {
 
                   if(response.status === 200 ) {
                         toast.success("Added to playlist ${playlistId.title}.", { position: "top-right" });
-                        playlistDispatch({ type: "ADD_TO_PLAYLIST", payload: response.data.playlists });
+                        playlistDispatch({ type: "ADD_VIDEO_TO_PLAYLIST", payload: response.data.playlists });
                   }
             } catch(err) {
                   console.error("error occured", err.message);
@@ -126,7 +126,7 @@ const PlaylistProvider = ({ children }) => {
             }
       }
 
-      const deleteFromPlaylist = async (playlistId, videoId) => {
+      const deleteVideoFromPlaylist = async (playlistId, videoId) => {
             try {
                   const response = await axios.delete(`/api/user/playlists/${playlistId}/${videoId}` ,
                   {
@@ -135,7 +135,7 @@ const PlaylistProvider = ({ children }) => {
       
                   if(response.status === 200 ) {
                         toast.success("Deleted from playlist ${playlistId.title}.", { position: "top-right" });
-                        playlistDispatch({ type: "DELETE_FROM_PLAYLIST", payload: response.data.playlists })
+                        playlistDispatch({ type: "DELETE_VIDEO_FROM_PLAYLIST", payload: response.data.playlists })
                   }
             } catch(err) {
                   console.error("error occured", err.message);
@@ -144,7 +144,7 @@ const PlaylistProvider = ({ children }) => {
       }
 
 	return (
-            <PlaylistContext.Provider value={{ playlistState, playlistDispatch, createPlaylist, deletePlaylist, addToPlaylist, deleteFromPlaylist }}>
+            <PlaylistContext.Provider value={{ playlistState, playlistDispatch, createPlaylist, deletePlaylist, addVideoToPlaylist, deleteVideoFromPlaylist }}>
                   {children}
             </PlaylistContext.Provider>
       );

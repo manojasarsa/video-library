@@ -31,7 +31,7 @@ const Playlist = () => {
                               </button>
                         </div>
                         <div className="history_list videolist flex flex_wrap">
-                              { playlistState.playlistsItems.map((playlist) => <VideoCard key={playlist._id} video={playlist} /> ) }
+                              { playlistState.playlistsItems.map((playlist) => <VideoCard key={playlist._id} playlist={playlist} /> ) }
                         </div>
                   </div>
                   : 
