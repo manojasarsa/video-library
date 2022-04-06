@@ -60,7 +60,7 @@ const PlaylistProvider = ({ children }) => {
 					playlistDispatch({ type: "GET_PLAYLISTS", payload: response.data.playlists });
 				}
 				} catch (err) {
-					console.error("error", err);
+					console.error("error is", err);
                               toast.error("Error occured while fetching playlist")
 				}
 		})()

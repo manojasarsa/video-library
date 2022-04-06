@@ -3,16 +3,26 @@ import { Header, VideoCard} from "../../components";
 import { usePlaylist } from "../../contexts";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-const Playlist = () => {
 
-      const [playlistModal, setPlaylistModal] = useState(false);
-      const [playlistName, setPlaylistName] = useState({playlist: ""});
+
+const Playlist = () => {
 
       const { playlistState, createPlaylist } = usePlaylist();
 
+      const [playlistModal, setPlaylistModal] = useState(false);
+
+      const [playlistName, setPlaylistName] = useState({playlist: ""});
+
+      // const { playlistsItems } = playlistState;
+
+      console.log("state value ",playlistState)
+
       const playlistsCounter = playlistState.playlistsItems.length;
 
+      console.log("counterValue", playlistsCounter)
+
       const playlistHandler = () => {
+            
             createPlaylist(playlistName);
             setPlaylistModal(false);
       }
@@ -24,24 +34,40 @@ const Playlist = () => {
                   { playlistsCounter !== 0
                   ?
                   <div className="history_container flex flex_col">
+
                         <div className="clear_all_btn">
+
                               <h3>Playlist ({playlistsCounter})</h3>
-                              <button className="icon_btn" onClick={setPlaylistModal(true)}>
+
+                              <button className="icon_btn" onClick={() => setPlaylistModal(true)}>
                                     <i className="fa-solid fa-plus add_btn"> <span className="playlist_text">Playlist</span></i>
                               </button>
+
                         </div>
+
                         <div className="history_list videolist flex flex_wrap">
-                              { playlistState.playlistsItems.map((playlist) => <VideoCard key={playlist._id} playlist={playlist} /> ) }
+                              {/* { playlistState.playlistsItems.map((playlist) => <VideoCard key={playlist._id} playlist={playlist} /> ) } */}
                         </div>
+
                   </div>
                   : 
                   <div className="list_wrapper"> 
+
                         <div className="create_playlist flex flex_justify_between">
+
                               <h3>Playlist ({playlistsCounter})</h3>
-                              <button className="icon_btn create_playlist_btn" onClick={setPlaylistModal(true)} >
-                                    <i className="fa-solid fa-plus add_btn"> <span className="playlist_text">Playlist</span></i>
+
+                              <button 
+                                    className="icon_btn create_playlist_btn" 
+                                    onClick={() => setPlaylistModal(true)} 
+                              >
+                                    <i className="fa-solid fa-plus add_btn">
+                                          <span className="playlist_text">Playlist</span>
+                                    </i>
                               </button>
+
                         </div>
+
                         <div className="list_container flex flex_col flex_justify_center flex_align_center">
                               <i className="fa-solid fa-music music_icon"></i>
                               <h3 className="playlist_title">Empty Playlist</h3>
