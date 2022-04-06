@@ -52,23 +52,25 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: aqua;
+      background-color: rgba(0, 0, 0, .5);
 }
 
 .create_playlist_modal {
       border-radius: 0.5rem;
       max-width: 45rem;
-      background-color: aliceblue;
+      background-color: var(--auth-color);
 }
 
 .create_playlist_modal .input {
-      border-bottom: 1px solid grey;
+      border-bottom: 1px solid var(--auth-color);
 }
 
 .create_playlist_modal .btn_playlist_create {
       width: 100%;
       border: 0;
       cursor: pointer;
+      
+      background-color: var(--auth-color);
 }
 
 .create_playlist_modal .icon_circle_plus {
@@ -79,4 +81,13 @@
 .modal_close_button {
       padding: 0.5rem;
       border-bottom: 1px solid grey;
+}
+
+.input_playlist_wrapper .input{
+      /* background-color: var(--auth-color); */
+}
+
+.listItems_wrapper {
+      height: 100vh;
+      margin: 0 7.8rem 0 6.5rem;
 }
