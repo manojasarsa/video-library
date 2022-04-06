@@ -88,6 +88,13 @@
 }
 
 .listItems_wrapper {
-      height: 100vh;
       margin: 0 7.8rem 0 6.5rem;
+}
+
+.playlist_container {
+      display: grid;
+      height: 100vh;
+      grid-gap: 2.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      margin: 1rem 7.8rem 0 6.5rem;
 }

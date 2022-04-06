@@ -43,7 +43,7 @@ const NavRoutes = () => {
                 ></Route>
 
                 <Route path="/videos/:videoId" element = {<SingleVideo />} />
-
+                {/* <Route path="/playlist/:playlistId" element = {<PlaylistVideos />} /> */}
                 <Route path="/login" element = {<Login />} />
                 <Route path="/logout" element = {<Logout />} />
                 <Route path="/signup" element = {<SignUp />} />

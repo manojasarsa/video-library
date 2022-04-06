@@ -1,5 +1,5 @@
 import "./playlist.css";
-import { Header, VideoCard} from "../../components";
+import { Header, PlaylistCard} from "../../components";
 import { usePlaylist } from "../../contexts";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -66,9 +66,9 @@ const Playlist = () => {
 
 
 
-                        {/* <div className="history_list videolist flex flex_wrap">
-                              { playlistState.playlistsItems.map((playlist) => <VideoCard key={playlist._id} playlist={playlist} /> ) }
-                        </div> */}
+                        <div className="playlist_container flex flex_wrap">
+                              { playlistState.playlistsItems.map((playlist) => <PlaylistCard key={playlist._id} playlist={playlist} /> ) }
+                        </div>
 
                   </div>
                   : 
