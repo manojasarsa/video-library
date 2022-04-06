@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
 // import { playlistReducer } from "../reducer/playlistReducer";
@@ -12,27 +13,27 @@ const playlistReducer = (state, action) => {
             case "GET_PLAYLISTS":
                   return {
                         ...state,
-                        playlistItems: action.payload,
+                        playlistsItems: action.payload,
                   };
             case "CREATE_PLAYLIST":
                   return {
                         ...state,
-                        playlistItems: action.payload,
+                        playlistsItems: action.payload,
                   };
             case "DELETE_PLAYLIST":
                   return {
                         ...state,
-                        playlistItems: action.payload,
+                        playlistsItems: action.payload,
                   };
             case "ADD_TO_PLAYLIST":
                   return {
                         ...state,
-                        playlistItems: action.payload,
+                        playlistsItems: state.playlistsItems.map((playlist) => playlist._id === action.payload._id ? action.payload : playlist) 
                   };
             case "DELETE_FROM_PLAYLIST":
                   return {
                         ...state,
-                        playlistItems: action.payload,
+                        playlistsItems: state.playlistsItems.map((playlist) => playlist._id === action.payload._id ? action.payload : playlist)
                   };
 		default:
 			return state;
@@ -42,7 +43,7 @@ const playlistReducer = (state, action) => {
 const PlaylistProvider = ({ children }) => {
       
 	const [ playlistState, playlistDispatch ] = useReducer(playlistReducer, {
-		playlistItems: [],
+		playlistsItems: [],
 	});
 
 	const { state: { token } } = useAuth();
@@ -60,17 +61,18 @@ const PlaylistProvider = ({ children }) => {
 				}
 				} catch (err) {
 					console.error("error", err);
+                              toast.error("Error occured while fetching playlist")
 				}
 		})()
 		: playlistDispatch({ type: "GET_PLAYLISTS", payload: [] });
 	}, [token]);
 
-	const createPlaylist = async (playlist) => {
+	const createPlaylist = async (playlistName) => {
 		try {
 			const response = await axios.post(
 			"/api/user/playlists",
 			{
-				playlist: { title: playlist }
+				playlist: { title: playlistName.playlist }
 			},
 			{
 				headers: { authorization: token },
@@ -78,10 +80,12 @@ const PlaylistProvider = ({ children }) => {
 			);
 
 			if (response.status === 201) {
+                        toast.success("Playlist created.", { position: "top-right" });
 				playlistDispatch({ type: "CREATE_PLAYLIST", payload: response.data.playlists });
 			}
 		} catch (err) {
 			console.error("error occurred", err.message);
+                  toast.error("Error occurred while creating playlist")
 		}
 	};
 
@@ -93,10 +97,12 @@ const PlaylistProvider = ({ children }) => {
 			});
 
 			if(response.status === 200 ) {
+                        toast.success("Playlist deleted.", { position: "top-right" });
 				playlistDispatch({ type: "DELETE_PLAYLIST", payload: response.data.playlists })
 			}
 	  	} catch(err) {
 		  	console.error("error occured", err.message);
+                  toast.error("Error occurred while deleting playlist")
 	  	}
   	}
 
@@ -111,10 +117,12 @@ const PlaylistProvider = ({ children }) => {
                   });
 
                   if(response.status === 200 ) {
-                        playlistDispatch({ type: "ADD_TO_PLAYLIST", payload: response.data.playlists })
+                        toast.success("Added to playlist ${playlistId.title}.", { position: "top-right" });
+                        playlistDispatch({ type: "ADD_TO_PLAYLIST", payload: response.data.playlists });
                   }
             } catch(err) {
                   console.error("error occured", err.message);
+                  toast.error("Error occurred while adding into playlist")
             }
       }
 
@@ -126,10 +134,12 @@ const PlaylistProvider = ({ children }) => {
                   });
       
                   if(response.status === 200 ) {
+                        toast.success("Deleted from playlist ${playlistId.title}.", { position: "top-right" });
                         playlistDispatch({ type: "DELETE_FROM_PLAYLIST", payload: response.data.playlists })
                   }
             } catch(err) {
                   console.error("error occured", err.message);
+                  toast.error("Error occurred while deleting from playlist")
             }
       }
 
