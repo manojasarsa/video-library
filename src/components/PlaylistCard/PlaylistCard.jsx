@@ -5,8 +5,6 @@ import { usePlaylist } from "../../contexts";
 
 const PlaylistCard = ({playlist}) => {
 
-      console.log("eachPlaylist in playlistCard: ", playlist);
-
       const { title, videos, _id } = playlist;
 
       const navigate = useNavigate();
@@ -19,27 +17,26 @@ const PlaylistCard = ({playlist}) => {
 
       return (
             
-            
-                  <div className="card_playlist">
-                        <div className="playlist_info">
+            <div className="card_playlist">
+                  <div className="playlist_info">
 
-                              <img 
-                                    className="img_responsive adjust_image" 
-                                    src="assets/playlist.jpg" 
-                                    alt= "playlist"
-                                    onClick={() => playlistVideosHandler()} 
-                              />
-                              
-                              <h3 className="playlist_title flex flex_justify_between flex_align_center">
-                                    {title} ({videos.length})
-                                    <span>
-                                          <i 
-                                          className="far fa-trash-can delete_all_icon"
-                                          onClick={() => deletePlaylist(_id)}> </i>
-                                    </span>
-                              </h3>
-                        </div>
+                        <img 
+                              className="img_responsive adjust_image" 
+                              src="assets/playlist.jpg" 
+                              alt= "playlist"
+                              onClick={() => playlistVideosHandler()} 
+                        />
+                        
+                        <h3 className="playlist_title flex flex_justify_between flex_align_center">
+                              {title} ({videos.length})
+                              <span>
+                                    <i 
+                                    className="far fa-trash-can delete_all_icon"
+                                    onClick={() => deletePlaylist(_id)}> </i>
+                              </span>
+                        </h3>
                   </div>
+            </div>
             
       );
 } 
