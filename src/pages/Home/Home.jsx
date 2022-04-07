@@ -1,11 +1,25 @@
 import "./home.css";
+// import { useReducer } from "react";
 import { Header} from "../../components";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { useAuth, useVideos, useCategory} from "../../contexts";
+// import { categoryReducer } from "../../reducer/categoryReducer";
+import { getFilteredList } from "../../utils/filterMethod";
 
 const Home = () => {
 
       const { state } = useAuth();
+
+      const { categoryState, categoryDispatch } = useCategory();
+
+      const { videosState, videosDispatch } = useVideos();
+      const { videos, categories } = videosState;
+
+      const filteredList = getFilteredList(videos, );
+
+      // const [ categoryState, categoryDispatch ] = useReducer(categoryReducer, {
+      //       categoryName: ""
+      // });
 
       return (
             <div className="main_container">
@@ -39,30 +53,47 @@ const Home = () => {
                               <h2 className="categories_heading">
                               EXPLORE ALL GENRES AND FIND WHAT YOU LOVE</h2>
                               
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "MUSIC"})} > 
                                     <img className="category_img" src="assets/bandBlue.jpg" alt="band" />
                                     <h2 className="category_name">Music</h2>
-                              </div>
+                              </Link>
                               
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center" 
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "VLOGS"})} >
                                     <img className="category_img" src="assets/vlog.jpg" alt="band" />
                                     <h2 className="category_name">Vlogs</h2>
-                              </div>
+                              </Link>
                               
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "STANDUP COMEDY"})} >
                                     <img className="category_img" src="assets/standUp.jpg" alt="band" />
                                     <h2 className="category_name">Standup Comedy</h2>
-                              </div>
+                              </Link>
 
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "SPORTS"})} > 
                                     <img className="category_img" src="assets/fBallStadium.jpg" alt="band" />
                                     <h2 className="category_name">Sports</h2>
-                              </div>
+                              </Link>
 
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "WEB DEV"})} >
                                     <img className="category_img" src="assets/webDev.jpg" alt="band" />
                                     <h2 className="category_name">Web Dev</h2>
-                              </div>
+                              </Link>
+
+                              {/* <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "MUSIC"})}
+                                    className="nav_categories" >MUSIC</button>
+                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "VLOGS"})}
+                                    className="nav_categories" >VLOGS</button>
+                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "STANDUP COMEDY"})}
+                                    className="nav_categories" >STANDUP COMEDY</button>
+                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "SPORTS"})}
+                                    className="nav_categories" >SPORTS</button>
+                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "WEB DEV"})}
+                                    className="nav_categories" >WEB DEV</button> */}
+
                         </div>
 
                         <h5 className="footer">© 2022 MANOJ ASARSA. All Rights Reserved</h5>
