@@ -1,8 +1,11 @@
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
 import { playlistReducer } from "../reducer/playlistReducer";
+
+toast.configure();
 
 const PlaylistContext = createContext();
 
@@ -27,7 +30,6 @@ const PlaylistProvider = ({ children }) => {
 				}
 				} catch (err) {
 					console.error("error is", err);
-                              toast.error("Error occured while fetching playlist")
 				}
 		})()
 		: playlistDispatch({ type: "GET_PLAYLISTS", payload: [] });
@@ -46,12 +48,11 @@ const PlaylistProvider = ({ children }) => {
 			);
 
 			if (response.status === 201) {
-                        toast.success("Playlist created.", { position: "top-right" });
+                        toast("Playlist created", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
 				playlistDispatch({ type: "CREATE_PLAYLIST", payload: response.data.playlists });
 			}
 		} catch (err) {
 			console.error("error occurred", err.message);
-                  toast.error("Error occurred while creating playlist")
 		}
 	};
 
@@ -63,12 +64,11 @@ const PlaylistProvider = ({ children }) => {
 			});
 
 			if(response.status === 200 ) {
-                        toast.success("Playlist deleted.", { position: "top-right" });
+                        toast.success("Playlist deleted", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
 				playlistDispatch({ type: "DELETE_PLAYLIST", payload: response.data.playlists })
 			}
 	  	} catch(err) {
 		  	console.error("error occured", err.message);
-                  toast.error("Error occurred while deleting playlist")
 	  	}
   	}
 
@@ -83,12 +83,11 @@ const PlaylistProvider = ({ children }) => {
                   });
 
                   if(response.status === 201 ) {
-                        toast.success("Added to playlist ${playlistId.title}.", { position: "top-right" });
+                        toast(`Added to playlist ${response.data.playlist.title}`, {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
                         playlistDispatch({ type: "ADD_VIDEO_TO_PLAYLIST", payload: response.data.playlist });
                   }
             } catch(err) {
                   console.error("error occured", err.message);
-                  toast.error("Error occurred while adding into playlist")
             }
       }
 
@@ -100,12 +99,11 @@ const PlaylistProvider = ({ children }) => {
                   });
       
                   if(response.status === 200 ) {
-                        toast.success("Deleted from playlist ${playlistId.title}.", { position: "top-right" });
+                        toast(`Deleted from playlist ${response.data.playlist.title}`, {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
                         playlistDispatch({ type: "DELETE_VIDEO_FROM_PLAYLIST", payload: response.data.playlist })
                   }
             } catch(err) {
                   console.error("error occured", err.message);
-                  toast.error("Error occurred while deleting from playlist")
             }
       }
 

@@ -1,7 +1,10 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
 import { historyReducer } from "../reducer/historyReducer";
+toast.configure();
 
 const HistoryContext = createContext();
 
@@ -59,6 +62,7 @@ const HistoryProvider = ({ children }) => {
 			});
 
 			if(response.status === 200 ) {
+				toast("Removed from History", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
 				historyDispatch({type: "SET_HISTORY_LIST", payload: response.data.history})
 			}
 	  	} catch(err) {
@@ -74,6 +78,7 @@ const HistoryProvider = ({ children }) => {
             });
 
             if(response.status === 200 ) {
+			toast("Cleared History", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
                   historyDispatch({type: "SET_HISTORY_LIST", payload: response.data.history})
             }
       } catch(err) {

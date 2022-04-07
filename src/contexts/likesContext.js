@@ -1,7 +1,10 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
 import { likesReducer } from "../reducer/likesReducer";
+toast.configure();
 
 const LikesContext = createContext();
 
@@ -44,6 +47,7 @@ const LikesProvider = ({ children }) => {
 			);
 
 			if (response.status === 201) {
+				toast("Added to Liked Videos", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
 				likesDispatch({ type: "SET_LIKED_LIST", payload: response.data.likes });
 			}
 		} catch (err) {
@@ -59,6 +63,7 @@ const LikesProvider = ({ children }) => {
 			});
 
 			if(response.status === 200 ) {
+				toast("Removed from Liked Videos", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
 				likesDispatch({type: "SET_LIKED_LIST", payload: response.data.likes})
 			}
 	  	} catch(err) {

@@ -104,9 +104,12 @@ const VideoCard = ({video}) => {
 
                                                       {/* playlist Button */}
 
-                                                      { state.isAuth && <button className="icon_btn" onClick={() => modalHandler()}>
+                                                      { state.isAuth ? <button className="icon_btn" onClick={() => modalHandler()}>
                                                             <i className="fa fa-folder-plus like_icons"></i>
                                                       </button>
+                                                      : <Link to="/login" className="icon_btn" >
+                                                      <i className="fa fa-folder-plus like_icons"></i>
+                                                      </Link>
                                                       }
 
                                                       {/* playlist modal */}

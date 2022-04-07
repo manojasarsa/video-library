@@ -1,7 +1,10 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
 import { watchLaterReducer } from "../reducer/watchLaterReducer";
+toast.configure();
 
 const WatchLaterContext = createContext();
 
@@ -44,6 +47,7 @@ const WatchLaterProvider = ({ children }) => {
 			);
 
 			if (response.status === 201) {
+				toast("Added to Watch Later", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
 				watchlaterDispatch({ type: "SET_WATCHLATER_LIST", payload: response.data.watchlater });
 			}
 		} catch (err) {
@@ -59,6 +63,7 @@ const WatchLaterProvider = ({ children }) => {
 			});
 
 			if(response.status === 200 ) {
+				toast("Removed from Watch Later", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
 				watchlaterDispatch({type: "SET_WATCHLATER_LIST", payload: response.data.watchlater})
 			}
 	  	} catch(err) {
