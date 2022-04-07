@@ -1,3 +1,24 @@
-## Video Library Backend
+# PLAY NOW
 
-This folder contains the Mock Backend created for Video Library App. It contains different API end-points and database configuration for building Video Library; so that you can focus on building Frontend.
+PLAY NOW is an amazing video library.
+
+## Tech Stack
+
+- React JS
+- Backend from MockBee
+
+## Features Present
+
+- Authentication
+  - Login
+  - Logout
+  - Signup
+- Video Listing
+- Filter Videos by Category
+- Playlist Management
+- Likes / Dislikes
+- History
+- Watch later
+- Search by video title
+- Single Video Page
+- Alerts

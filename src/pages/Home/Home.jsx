@@ -1,11 +1,13 @@
 import "./home.css";
 import { Header} from "../../components";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { useAuth, useCategory} from "../../contexts";
 
 const Home = () => {
 
       const { state } = useAuth();
+
+      const { categoryDispatch } = useCategory();
 
       return (
             <div className="main_container">
@@ -39,33 +41,41 @@ const Home = () => {
                               <h2 className="categories_heading">
                               EXPLORE ALL GENRES AND FIND WHAT YOU LOVE</h2>
                               
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "MUSIC"})} > 
                                     <img className="category_img" src="assets/bandBlue.jpg" alt="band" />
                                     <h2 className="category_name">Music</h2>
-                              </div>
+                              </Link>
                               
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center" 
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "VLOGS"})} >
                                     <img className="category_img" src="assets/vlog.jpg" alt="band" />
                                     <h2 className="category_name">Vlogs</h2>
-                              </div>
+                              </Link>
                               
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "STANDUP COMEDY"})} >
                                     <img className="category_img" src="assets/standUp.jpg" alt="band" />
                                     <h2 className="category_name">Standup Comedy</h2>
-                              </div>
+                              </Link>
 
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "SPORTS"})} > 
                                     <img className="category_img" src="assets/fBallStadium.jpg" alt="band" />
                                     <h2 className="category_name">Sports</h2>
-                              </div>
+                              </Link>
 
-                              <div className="category flex flex_justify_center flex_align_center">
+                              <Link to="/videolisting" className="category flex flex_justify_center flex_align_center"
+                                    onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "WEB DEV"})} >
                                     <img className="category_img" src="assets/webDev.jpg" alt="band" />
                                     <h2 className="category_name">Web Dev</h2>
-                              </div>
+                              </Link>
+
                         </div>
 
-                        <h5 className="footer">© 2022 MANOJ ASARSA. All Rights Reserved</h5>
+                        <footer>
+                              <h5 className="footer">© 2022 MANOJ ASARSA. All Rights Reserved</h5>
+                        </footer>
                   </div>
             </div>
     );

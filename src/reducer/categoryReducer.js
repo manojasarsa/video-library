@@ -7,6 +7,12 @@ const categoryReducer = (state, action) => {
                   categoryName: action.payload,
             };
 
+      case "SET_SEARCH_QUERY":
+            return {
+                  ...state,
+                  searchQuery: action.payload,
+      };
+
       default:
             return state;
       }

@@ -1,3 +1,11 @@
+.playlist_container {
+      display: grid;
+      height: 100vh;
+      grid-gap: 2.5rem;
+      margin: 1rem 7.8rem 0 6.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
 .list_wrapper {
       height: 100vh;
       margin: 13rem 7.8rem 0 6.5rem;
@@ -6,9 +14,9 @@
 .list_container {
       width: 15rem;
       height: 15rem;
-      border: 1px solid var(--white-color);
       margin: 0 auto;
       gap: 2rem;
+      border: 1px solid var(--white-color);
 }
 
 .music_icon {
@@ -22,3 +30,79 @@
       color: var(--cta-sec-color);
 }
 
+.clear_all_btn {
+      align-self: center;
+      margin-right: 8rem;
+}
+
+.create_playlist_btn {
+      border: 1px solid var(--white-color);
+      color: var(--prim-color);
+      padding: 0.2rem 1rem;
+}
+
+.playlist_text {
+      font-size: 0.8rem;
+}
+
+.playlist_title {
+      padding: 0.5rem 1rem;
+}
+
+.playlist_title .delete_all_icon {
+      font-size: 1.3rem;
+}
+
+
+/* Modal */
+
+.modal_container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99;
+      background-color: rgba(0, 0, 0, .5);
+}
+
+.create_playlist_modal {
+      max-width: 45rem;
+      border-radius: 0.5rem;
+      background-color: var(--auth-color);
+}
+
+.create_playlist_modal .input {
+      border-bottom: 1px solid var(--auth-color);
+      background-color: var(--shadow-color);
+      padding: 0.5rem;
+      
+}
+
+.create_playlist_modal .input:placeholder {
+      color: var(--primary-color);
+}
+
+.create_playlist_modal .create_playlist_btn {
+      padding: 0.5rem;
+      border: 0;
+      cursor: pointer;
+      width: 100%;
+      background-color: var(--auth-color);
+}
+
+.create_playlist_modal .icon_circle_plus {
+      margin-right: 0.5rem;
+      cursor: pointer;
+}
+
+.modal_close_btn {
+      padding: 0.5rem;
+      border-bottom: 1px solid var(--grey-color);
+}
+
+.listItems_wrapper {
+      margin: 0 7.8rem 0 6.5rem;
+}

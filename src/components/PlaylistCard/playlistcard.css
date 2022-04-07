@@ -1,0 +1,19 @@
+.playlist_card {
+      width: 100%;
+      cursor: pointer;
+      min-height: 20rem;
+}
+
+.playlist_info {
+      position: relative;
+}
+
+.playlist_title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      color: var(--white-color);
+      background-color: var(--bckg-modal-color);
+}

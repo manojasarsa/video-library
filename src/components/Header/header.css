@@ -36,6 +36,7 @@
 
 .nav_center {
       flex-basis: 25%;
+      position: relative;
 }
 
 .header_btn {
@@ -65,4 +66,33 @@ header .nav_right span {
 
 .nav_right .logout_btn {
       font-size: 0.8rem;
+}
+
+.input_search {
+      padding: 0.2rem 0.5rem;
+      background-color: var(--prim-color);
+      color: var(--white-color);
+}
+
+.input_search::placeholder {
+      font-size: 0.7rem;
+}
+
+.nav_center .search_icon {
+      position: absolute;
+      font-size: 0.9rem;
+      left: 90%;
+      top: 50%;
+      transform: translate(0, -50%);
+      cursor: pointer;
+      color:  rgb(32, 30, 30);
+}
+
+header .search {
+      font-size: 0.8rem;
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 0;
+      border: none;
+      border: 1px solid rgb(32, 30, 30);
 }

@@ -99,6 +99,20 @@ input.input_checkbox {
     color: var(--white-color);
 }
 
+.input_field .input_label {
+    position: relative;
+}
+
+.input_field .input_label .show_hide_btn {
+    position: absolute;
+    font-size: 0.9rem;
+    right: 0.5rem;
+    bottom: 4rems;
+    top: 60%;
+    cursor: pointer;
+    color: var(--grey-color);
+}
+
 /* input errors */
 
 .input_box_error {
