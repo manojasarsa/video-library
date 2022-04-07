@@ -1,5 +1,4 @@
 import "./playlistcard.css";
-
 import { useNavigate } from "react-router-dom";
 import { usePlaylist } from "../../contexts";
 
@@ -17,7 +16,7 @@ const PlaylistCard = ({playlist}) => {
 
       return (
             
-            <div className="card_playlist">
+            <div className="playlist_card">
                   <div className="playlist_info">
 
                         <img 

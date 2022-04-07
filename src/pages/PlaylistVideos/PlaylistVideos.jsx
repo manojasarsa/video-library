@@ -19,12 +19,12 @@ const PlaylistVideos = () => {
                   <Header />
 
                   <div className="list_wrapper play_container">
-                        <header className="main_container_header">
+                        <header>
                               <h1>
                                     {playlistPresent.title} ({videosInPlaylistPresent.length})
                               </h1>
 
-                              <div className="playlist_wrapper playlist_videos_wrapper">
+                              <div className="playlist_video_wrapper flex">
 
                                     {videosInPlaylistPresent.length === 0 
                                     ? <h3>Playlist Empty!</h3> 

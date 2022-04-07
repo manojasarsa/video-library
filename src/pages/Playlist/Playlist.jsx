@@ -1,7 +1,6 @@
 import "./playlist.css";
 import { Header, PlaylistCard} from "../../components";
 import { usePlaylist } from "../../contexts";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -13,21 +12,13 @@ const Playlist = () => {
 
       const [playlistName, setPlaylistName] = useState({playlist: ""});
 
-      // const { playlistsItems } = playlistState;
-
-      // console.log("state value ",playlistState)
-
       const playlistsCounter = playlistState.playlistsItems.length;
-
-      console.log("counterValue", playlistsCounter);
 
       const playlistHandler = () => {
             
             createPlaylist(playlistName);
             setPlaylistModal(false);
       }
-
-      console.log("PlayList Array: ", playlistState.playlistsItems);
       
       return (
             <div>
@@ -36,16 +27,6 @@ const Playlist = () => {
                   { playlistsCounter !== 0
                   ?
                   <div className="history_container flex flex_col">
-
-                        {/* <div className="clear_all_btn">
-
-                              <h3>Playlist ({playlistsCounter})</h3>
-
-                              <button className="icon_btn" onClick={() => setPlaylistModal(true)}>
-                                    <i className="fa-solid fa-plus add_btn"> <span className="playlist_text">Playlist</span></i>
-                              </button>
-
-                        </div> */}
 
                         <div className="listItems_wrapper">
                               <div className="create_playlist flex flex_justify_between">
@@ -91,23 +72,18 @@ const Playlist = () => {
                   </div>
                   }
 
-                  
-
-                  {/* Modal */}
-
-                  <div className="create_playlist_modal_wrapper" style={playlistModal === true ? {display: "flex"} : {display: "none"}}>
+                  <div className="modal_container flex flex_col flex_justify_center flex_align_center" style={playlistModal === true ? {display: "flex"} : {display: "none"}}>
 
                         <div className="create_playlist_modal" >
 
-                              <div className="space_between modal_close_button flex flex_justify_between">
+                              <div className="modal_close_btn flex flex_justify_between">
 
                                     <h4 className="">Playlist</h4>
                                     <i class="fa-solid fa-circle-xmark" onClick={() => setPlaylistModal(false) }></i>
 
                               </div>
 
-                              <div className="input_playlist_wrapper">
-
+                              <div>
                                     <input 
                                           type="text"
                                           className="input"
@@ -122,7 +98,7 @@ const Playlist = () => {
                               </div>
 
                               <button 
-                                    className="btn_playlist_create center"
+                                    className="create_playlist_btn center"
                                     onClick={() => playlistHandler()}
                               >
                                     <i className="fa-solid fa-plus add_btn tools_icon icon_circle_plus"> <span className="playlist_text">Playlist</span></i>

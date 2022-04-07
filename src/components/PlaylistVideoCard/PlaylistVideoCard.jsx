@@ -1,20 +1,15 @@
 import "./playlistvideocard.css";
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { usePlaylist, useAuth, useHistoryList} from "../../contexts";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { usePlaylist } from "../../contexts";
 
 const PlaylistVideoCard = ({video}) => {
 
       const { playlistId } = useParams();
 
-      const navigate = useNavigate();
-
-      const { state } = useAuth();
-
-      const { title, vidImage, creator, _id } = video;
+      const { title, vidImage, _id } = video;
 
       const { deleteVideoFromPlaylist } = usePlaylist();
-
 
       return (
             
@@ -22,11 +17,13 @@ const PlaylistVideoCard = ({video}) => {
                   <div className="card_vertical">
                         <div className="card_vertical_info flex flex_col flex_justify_start">
 
-                              <div className="card_details_box flex ">
-                                    
-                                    <img src= {vidImage} alt= {title} />
+                              <div className="playlist_video_wrapper flex ">
 
-                                    <div className="playlist_title flex flex_justify_between flex_align_center">
+                                    <Link to = {`/videos/${_id}`}>
+                                          <img className="img_responsive adjust_image" src={vidImage} alt={title} />
+                                    </Link>
+                                    
+                                    <div className="playlist_title flex flex_justify_between flex_align_center delete_video">
 
                                           {title}
 
@@ -40,26 +37,6 @@ const PlaylistVideoCard = ({video}) => {
                   </div>
             </div>
 
-            // <div className="card_playlist">
-            //       <div className="playlist_info">
-
-            //             <img 
-            //                   className="img_responsive adjust_image" 
-            //                   src="assets/playlist.jpg" 
-            //                   alt= "playlist"
-            //                   onClick={() => playlistVideosHandler()} 
-            //             />
-                        
-            //             <h3 className="playlist_title flex flex_justify_between flex_align_center">
-            //                   {title} ({videos.length})
-            //                   <span>
-            //                         <i 
-            //                         className="far fa-trash-can delete_all_icon"
-            //                         onClick={() => deleteVideoFromPlaylist(playlistId, videoId)}> </i>
-            //                   </span>
-            //             </h3>
-            //       </div>
-            // </div>
       );
 }
 

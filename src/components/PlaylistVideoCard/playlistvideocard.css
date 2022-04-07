@@ -1,0 +1,7 @@
+.playlist_video_wrapper {
+      position: relative;
+}
+
+.card_details_box .delete_video {
+      background-color: var(--modal-color);
+}

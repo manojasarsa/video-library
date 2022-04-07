@@ -27,8 +27,6 @@ const VideoCard = ({video}) => {
 
       const historyItemExist = historyState.historyItems.find((item) => item._id === video._id);
 
-      const playlistVideoExist = playlistState.playlistsItems.find((item) => item._id === video._id);
-
       let location = useLocation();
 
       const isHistory = location.pathname === "/history";
@@ -102,8 +100,6 @@ const VideoCard = ({video}) => {
                                                       </Link>
                                                       }
 
-                                                      {/* playlist Button */}
-
                                                       { state.isAuth ? <button className="icon_btn" onClick={() => modalHandler()}>
                                                             <i className="fa fa-folder-plus like_icons"></i>
                                                       </button>
@@ -112,9 +108,10 @@ const VideoCard = ({video}) => {
                                                       </Link>
                                                       }
 
-                                                      {/* playlist modal */}
+                                                      {/* PLAYLIST MODAL */}
 
-                                                      <div className="playlist_modal_container" style={playlistModal === true ? {display: "flex"} : {display: "none"}}>
+                                                      <div  className="playlist_modal_container flex flex_col flex_justify_center flex_align_center" 
+                                                            style={playlistModal === true ? {display: "flex"} : {display: "none"}} >
 
                                                             <div className="create_playlist_wrapper" >
 
@@ -123,31 +120,24 @@ const VideoCard = ({video}) => {
                                                                         Playlist
                                                                         <i class="fa-solid fa-circle-xmark icons" onClick={() => setPlaylistModal(false) }></i>
 
-                                                                  </h3>
+                                                                  </h3>                            
 
-                                                                  {/* display list of playlist */}
-
-                                                                  <div className="lists_playlist">
+                                                                  <div className="lists_playlist flex flex_col">
 
                                                                         {playlistState.playlistsItems?.map((data, i) => {
 
                                                                               return data.videos.find((vid) => vid._id === video._id) 
 
-                                                                              ? (
-                                                                                    // <button className="playlist_one">
-                                                                                    //       <i class="far-solid fa-circle-xmark">{data.title}</i>
-                                                                                    // </button>
-
-                                                                                    <i className="fa-solid fa-check playlist_one icons icon_circle_plus"> {data.title} </i>
+                                                                              ? (                                            
+                                                                                    <i className="fa-solid fa-check playlist_one icons icon_circle_plus flex flex_justify_start flex_align_center"> 
+                                                                                          {data.title} 
+                                                                                    </i>
                                                                               ) : (
-                                                                                    // <button className="playlist_one"  >
-                                                                                    // <i class="fa-solid far-circle-xmark" key={data._id} 
-                                                                                    // onClick={() => addVideoToPlaylist(data, video)}>{data.title} </i>
-                                                                                    
-                                                                                    // </button>
-                                                                                    // <h1>{console.log("clicked in ul list")}</h1>
-                                                                                    <i className="fa-solid fa-plus playlist_one icons icon_circle_plus" key={data._id}
-                                                                                    onClick={() => addVideoToPlaylist(data._id, video)}> {data.title} </i>
+                                                                                    <i className="fa-solid fa-plus playlist_one icons icon_circle_plus" 
+                                                                                          key={data._id}
+                                                                                          onClick={() => addVideoToPlaylist(data._id, video)}> 
+                                                                                          {data.title} 
+                                                                                    </i>
                                                                               );
                                                                         })}
                                                                   </div>
@@ -174,10 +164,8 @@ const VideoCard = ({video}) => {
                                                                         </button>
 
                                                                   </div>
-
                                                             </div>
-                                                      </div>
-                                                                                               
+                                                      </div>                                         
                                                 </div>
                                           </div>
                                     </div>  

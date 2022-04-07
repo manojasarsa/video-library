@@ -1,4 +1,4 @@
-.card_playlist {
+.playlist_card {
       width: 100%;
       cursor: pointer;
       min-height: 20rem;
@@ -12,8 +12,8 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 0rem;
+      bottom: 0;
       text-align: center;
-      color: white;
-      background-color: #040c1d82;
+      color: var(--white-color);
+      background-color: var(--bckg-modal-color);
 }

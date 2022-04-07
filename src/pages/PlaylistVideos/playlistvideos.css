@@ -1,16 +1,3 @@
-.main_container {
-
-}
-
-.main_container_header {
-
-
-}
-
-.playlist_wrapper {
-
-}
-
-.playlist_videos_wrapper {
-      
+.playlist_video_wrapper {
+      gap: 5px;
 }
