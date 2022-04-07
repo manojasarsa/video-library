@@ -1,11 +1,15 @@
 import "./header.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts";
-import { NavLink } from "react-router-dom";
+import { useAuth, useCategory} from "../../contexts";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
 
       const { state, logout } = useAuth();
+
+      const { categoryState, categoryDispatch } = useCategory();
+
+      const navigate = useNavigate();
 
     return (
             <div>
@@ -15,7 +19,22 @@ const Header = () => {
                         <div class="nav_left logo">
                               <Link className="logo_name" to="/">PLAY NOW </Link>
                         </div>
-                  
+
+                        <div className="nav_center searchbar">
+                              <input 
+                              name="search"
+                              value={categoryState.searchQuery}
+                              className="input input_search search" 
+                              type="text" 
+                              placeholder="Search Videos"
+                              onChange={(e) => categoryDispatch({type: "SET_SEARCH_QUERY", payload: e.target.value})}
+                              />
+
+                              <i class="fa-solid fa-magnifying-glass search_icon" 
+                              onClick={() => navigate("/videolisting")}>
+                              </i>
+                        </div>
+                 
                         <div class="nav_right flex flex_justify_between flex_align_center">
 
                               <NavLink className="nav_btn" to="/videolisting" 

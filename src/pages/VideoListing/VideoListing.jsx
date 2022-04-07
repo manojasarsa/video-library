@@ -2,7 +2,7 @@ import "./videolisting.css";
 import { Header, VideoCard} from "../../components";
 import { useVideos } from "../../contexts";
 // import { categoryReducer } from "../../reducer/categoryReducer";
-import { getFilteredList } from "../../utils/filterMethod";
+import { getFilteredList, searchByName } from "../../utils/filterMethod";
 // import { createContext, useState, useEffect, useContext, useReducer } from "react";
 import {useCategory} from "../../contexts";
 
@@ -17,6 +17,8 @@ const VideoListing = () => {
       const { videos } = videosState;
 
       const filteredList = getFilteredList(videos, categoryState.categoryName);
+
+      const getSearchedItem = searchByName(filteredList, categoryState.searchQuery);
 
       return (
             <div>
@@ -39,7 +41,7 @@ const VideoListing = () => {
                         </div>
 
                         <div className="videolist flex flex_wrap">
-                              {filteredList.map((item) =>
+                              {getSearchedItem.map((item) =>
                               <VideoCard key={item._id} video={item} />)}
                         </div>
                   </div>
