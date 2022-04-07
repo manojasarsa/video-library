@@ -1,25 +1,13 @@
 import "./home.css";
-// import { useReducer } from "react";
 import { Header} from "../../components";
 import { Link } from "react-router-dom";
-import { useAuth, useVideos, useCategory} from "../../contexts";
-// import { categoryReducer } from "../../reducer/categoryReducer";
-import { getFilteredList } from "../../utils/filterMethod";
+import { useAuth, useCategory} from "../../contexts";
 
 const Home = () => {
 
       const { state } = useAuth();
 
-      const { categoryState, categoryDispatch } = useCategory();
-
-      const { videosState, videosDispatch } = useVideos();
-      const { videos, categories } = videosState;
-
-      const filteredList = getFilteredList(videos, );
-
-      // const [ categoryState, categoryDispatch ] = useReducer(categoryReducer, {
-      //       categoryName: ""
-      // });
+      const { categoryDispatch } = useCategory();
 
       return (
             <div className="main_container">

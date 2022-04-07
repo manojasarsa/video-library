@@ -17,7 +17,7 @@ const VideoCard = ({video}) => {
 
       const { historyState, addToHistoryList, removeFromHistoryList } = useHistoryList();
 
-      const { playlistState, createPlaylist, addVideoToPlaylist, deleteVideoFromPlaylist } = usePlaylist();
+      const { playlistState, createPlaylist, addVideoToPlaylist } = usePlaylist();
 
       const { title, vidImage, creator, _id } = video;
 
