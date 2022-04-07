@@ -2,7 +2,7 @@ import "./playlistvideos.css";
 import { useParams } from "react-router-dom";
 import { usePlaylist } from "../../contexts";
 import { Header } from "../../components";
-// import { Playlist } from "../Playlist/Playlist";
+import { PlaylistVideoCard } from "../../components";
 
 const PlaylistVideos = () => {
 
@@ -26,9 +26,9 @@ const PlaylistVideos = () => {
 
                               <div className="playlist_wrapper playlist_videos_wrapper">
 
-                                    {/* {videosInPlaylistPresent.length === 0 
+                                    {videosInPlaylistPresent.length === 0 
                                     ? <h3>Playlist Empty!</h3> 
-                                    : videosInPlaylistPresent.map((video) => <PlaylistVideoCard key={video._id} video={video} /> )} */}
+                                    : videosInPlaylistPresent.map((video) => <PlaylistVideoCard key={video._id} video={video} /> )}
 
                               </div>
 
