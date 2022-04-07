@@ -108,7 +108,7 @@ const PlaylistProvider = ({ children }) => {
 
       const addVideoToPlaylist = async (playlistId, video) => {
             try {
-                  const response = await axios.delete(`/api/user/playlists/${playlistId}` ,
+                  const response = await axios.post(`/api/user/playlists/${playlistId}` ,
                   {
                         video
                   },
@@ -116,9 +116,9 @@ const PlaylistProvider = ({ children }) => {
                         headers: { authorization: token }
                   });
 
-                  if(response.status === 200 ) {
+                  if(response.status === 201 ) {
                         toast.success("Added to playlist ${playlistId.title}.", { position: "top-right" });
-                        playlistDispatch({ type: "ADD_VIDEO_TO_PLAYLIST", payload: response.data.playlists });
+                        playlistDispatch({ type: "ADD_VIDEO_TO_PLAYLIST", payload: response.data.playlist });
                   }
             } catch(err) {
                   console.error("error occured", err.message);
@@ -135,7 +135,7 @@ const PlaylistProvider = ({ children }) => {
       
                   if(response.status === 200 ) {
                         toast.success("Deleted from playlist ${playlistId.title}.", { position: "top-right" });
-                        playlistDispatch({ type: "DELETE_VIDEO_FROM_PLAYLIST", payload: response.data.playlists })
+                        playlistDispatch({ type: "DELETE_VIDEO_FROM_PLAYLIST", payload: response.data.playlist })
                   }
             } catch(err) {
                   console.error("error occured", err.message);

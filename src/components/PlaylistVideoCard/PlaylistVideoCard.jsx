@@ -14,7 +14,7 @@ const PlaylistVideoCard = ({video}) => {
       const { title, vidImage, creator, _id } = video;
 
       const { deleteVideoFromPlaylist } = usePlaylist();
-      
+
 
       return (
             
@@ -24,28 +24,42 @@ const PlaylistVideoCard = ({video}) => {
 
                               <div className="card_details_box flex ">
                                     
-                                    <img className="avatar_img" src= {vidImage} alt= {title} />
+                                    <img src= {vidImage} alt= {title} />
 
-                                    <div className="video_details_box ">
+                                    <div className="playlist_title flex flex_justify_between flex_align_center">
 
-                                          <div className="card_title "> {title} </div>
-                                                                  
-                                          <div className="channel_box flex flex_justify_between">
+                                          {title}
 
-                                                <div className="creator_box flex">
-                                                      <div className="channel_name"> {creator} </div>
-                                                      <i className="verfiy_icon fa-solid fa-circle-check"></i>
-                                                </div>
-                                                
-                                                <div className="icon_box flex flex_justify_between flex_align_center">
-
-                                                </div>
-                                          </div>
+                                          <i 
+                                          className="far fa-trash-can delete_all_icon"
+                                          onClick={() => deleteVideoFromPlaylist(playlistId, _id)}> </i>
+                                                         
                                     </div>  
                               </div>
                         </div>
                   </div>
             </div>
+
+            // <div className="card_playlist">
+            //       <div className="playlist_info">
+
+            //             <img 
+            //                   className="img_responsive adjust_image" 
+            //                   src="assets/playlist.jpg" 
+            //                   alt= "playlist"
+            //                   onClick={() => playlistVideosHandler()} 
+            //             />
+                        
+            //             <h3 className="playlist_title flex flex_justify_between flex_align_center">
+            //                   {title} ({videos.length})
+            //                   <span>
+            //                         <i 
+            //                         className="far fa-trash-can delete_all_icon"
+            //                         onClick={() => deleteVideoFromPlaylist(playlistId, videoId)}> </i>
+            //                   </span>
+            //             </h3>
+            //       </div>
+            // </div>
       );
 }
 

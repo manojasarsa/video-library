@@ -1,9 +1,13 @@
 import "./videocard.css";
-import * as FaIcons from "react-icons/fa";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth, useLikedList, useWatchLaterList, useHistoryList } from "../../contexts";
+import { useAuth, useLikedList, useWatchLaterList, useHistoryList, usePlaylist } from "../../contexts";
 
 const VideoCard = ({video}) => {
+
+      const [playlistModal, setPlaylistModal] = useState(false);
+
+      const [playlistName, setPlaylistName] = useState({playlist: ""});
 
       const { state } = useAuth();
 
@@ -13,6 +17,8 @@ const VideoCard = ({video}) => {
 
       const { historyState, addToHistoryList, removeFromHistoryList } = useHistoryList();
 
+      const { playlistState, createPlaylist, addVideoToPlaylist, deleteVideoFromPlaylist } = usePlaylist();
+
       const { title, vidImage, creator, _id } = video;
 
       const likedItemExist = likesState.likedItems.find((vid) => vid._id === video._id);
@@ -21,9 +27,15 @@ const VideoCard = ({video}) => {
 
       const historyItemExist = historyState.historyItems.find((item) => item._id === video._id);
 
+      const playlistVideoExist = playlistState.playlistsItems.find((item) => item._id === video._id);
+
       let location = useLocation();
 
       const isHistory = location.pathname === "/history";
+
+      const playlistHandler = () => createPlaylist(playlistName);
+
+      const modalHandler = () => setPlaylistModal(true);
 
       return (
             
@@ -90,7 +102,79 @@ const VideoCard = ({video}) => {
                                                       </Link>
                                                       }
 
-                                                      <FaIcons.FaFolderPlus className="sidebar_icons" />
+                                                      {/* playlist Button */}
+
+                                                      { state.isAuth && <button className="icon_btn" onClick={() => modalHandler()}>
+                                                            <i className="fa fa-folder-plus like_icons"></i>
+                                                      </button>
+                                                      }
+
+                                                      {/* playlist modal */}
+
+                                                      <div className="playlist_modal_container" style={playlistModal === true ? {display: "flex"} : {display: "none"}}>
+
+                                                            <div className="create_playlist_wrapper" >
+
+                                                                  <h3 className="space_between btn_modal_close flex flex_justify_between">
+
+                                                                        Playlist
+                                                                        <i class="fa-solid fa-circle-xmark icons" onClick={() => setPlaylistModal(false) }></i>
+
+                                                                  </h3>
+
+                                                                  {/* display list of playlist */}
+
+                                                                  <div className="lists_playlist">
+
+                                                                        {playlistState.playlistsItems?.map((data, i) => {
+
+                                                                              return data.videos.find((vid) => vid._id === video._id) 
+
+                                                                              ? (
+                                                                                    // <button className="playlist_one">
+                                                                                    //       <i class="far-solid fa-circle-xmark">{data.title}</i>
+                                                                                    // </button>
+
+                                                                                    <i className="fa-solid fa-check playlist_one icons icon_circle_plus"> {data.title} </i>
+                                                                              ) : (
+                                                                                    // <button className="playlist_one"  >
+                                                                                    // <i class="fa-solid far-circle-xmark" key={data._id} 
+                                                                                    // onClick={() => addVideoToPlaylist(data, video)}>{data.title} </i>
+                                                                                    
+                                                                                    // </button>
+                                                                                    // <h1>{console.log("clicked in ul list")}</h1>
+                                                                                    <i className="fa-solid fa-plus playlist_one icons icon_circle_plus" key={data._id}
+                                                                                    onClick={() => addVideoToPlaylist(data._id, video)}> {data.title} </i>
+                                                                              );
+                                                                        })}
+                                                                  </div>
+
+                                                                  <div className="add_new_playlist">
+
+                                                                        <div className="input_playlist_wrapper">
+                                                                              <input 
+                                                                                    type="text"
+                                                                                    className="input"
+                                                                                    placeholder="Enter Playlist Name"
+                                                                                    onChange={(e) => 
+                                                                                          setPlaylistName((prev) => ({
+                                                                                                ...prev,
+                                                                                                playlist: e.target.value,
+                                                                                          }))
+                                                                                    }
+                                                                              />
+                                                                        </div>
+
+                                                                        <button className="btn_playlist_create center" onClick={() => playlistHandler()} >
+
+                                                                        <i class="fa-solid fa-circle-check icon_circle_plus"></i> Create New Playlist  
+                                                                        </button>
+
+                                                                  </div>
+
+                                                            </div>
+                                                      </div>
+                                                                                               
                                                 </div>
                                           </div>
                                     </div>  
