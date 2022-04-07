@@ -83,20 +83,11 @@ const Home = () => {
                                     <h2 className="category_name">Web Dev</h2>
                               </Link>
 
-                              {/* <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "MUSIC"})}
-                                    className="nav_categories" >MUSIC</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "VLOGS"})}
-                                    className="nav_categories" >VLOGS</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "STANDUP COMEDY"})}
-                                    className="nav_categories" >STANDUP COMEDY</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "SPORTS"})}
-                                    className="nav_categories" >SPORTS</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "WEB DEV"})}
-                                    className="nav_categories" >WEB DEV</button> */}
-
                         </div>
 
-                        <h5 className="footer">© 2022 MANOJ ASARSA. All Rights Reserved</h5>
+                        <footer>
+                              <h5 className="footer">© 2022 MANOJ ASARSA. All Rights Reserved</h5>
+                        </footer>
                   </div>
             </div>
     );
