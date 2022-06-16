@@ -76,16 +76,6 @@ input.input_checkbox {
     background-color: var(--cta-color);
 }
 
-.forgot_pwd_box {
-    align-self: center;
-}
-
-.forgot_pwd {
-    padding-top: 1.1rem; 
-    font-size: 0.8rem;
-    color: var(--grey-color);
-}
-
 .input_subheading {
     margin: 0.5rem 0;
     text-align: center;
@@ -149,7 +139,7 @@ input.input_checkbox {
     margin: 1rem;
 }
 
-.input_container .toast {
+.toast {
     display: flex;
     background-color: var(--cta-sec-color);
 }

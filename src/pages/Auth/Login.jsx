@@ -3,8 +3,12 @@ import { Header } from "../../components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts";
+import { toastHandler } from "../../utils/toastHandler";
 
 const Login = () => {
+
+    const [toastMsg, setToastMsg] = useState("");
+    const [toastState, setToastState] = useState(false);
 
     const { login } = useAuth();
 
@@ -14,20 +18,22 @@ const Login = () => {
     }
 
     const [ formInputs, setFormInputs ] = useState(loginInputs);
-    const [error, setError] = useState("");
-    const [errorState, setErrorState] = useState(false);
     const [showHide, setShowHide] = useState(false);
 
     const { email, password } = formInputs;
 
     const formHandler = (e) => {
         e.preventDefault();
-        login({email, password, setError, setErrorState});   
+        login({email, password, setToastMsg, setToastState});   
+        setToastMsg("Welcome Back!");
+        toastHandler(setToastState);
     }
 
     const guestLoginHandler = (e) => {
         e.preventDefault();
-        login({email: "manojasarsa7611@gmail.com", password: "Manoj@8947", setError, setErrorState});
+        login({email: "manojasarsa7611@gmail.com", password: "Manoj@8947", setToastMsg, setToastState});
+        setToastMsg("Welcome Back!");
+        toastHandler(setToastState);
     } 
 
     return (
@@ -75,8 +81,8 @@ const Login = () => {
                 </form>
             </div>
 
-            {errorState && <div class="alert_error toast flex flex_justify_center flex_align_center toast_box toast_active_leading toast_position">
-                <span> {error} </span>
+            {toastState && <div class="toast flex flex_justify_center flex_align_center toast_active_leading toast_position">
+                <span> {toastMsg} </span>
             </div> }
         </>
     );

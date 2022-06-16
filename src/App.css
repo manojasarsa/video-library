@@ -1,24 +1,36 @@
 :root {
-      --prim-color: #0e0e0e;
-      --sec-color: #878787;
-      --cta-prim-color: #e50914;
-      --cta-sec-color: #db0510;
-      --auth-color: #0b090a;
-      --bckg-modal-color: #040c1d82;
-      --tansparent-color: rgba(0, 0, 0, .5);
+    --prim-color: #0e0e0e;
+    --sec-color: #878787;
+    --cta-prim-color: #e50914;
+    --cta-sec-color: #db0510;
+    --auth-color: #0b090a;
+    --bckg-modal-color: #040c1d82;
+    --tansparent-color: rgba(0, 0, 0, .5);
 
-      --ff-barlow: 'Barlow', sans-serif;
-      --ff-roboto: 'Roboto', sans-serif;
-      --ff-lora: 'Lora', serif;
-      --ff-poppins: 'Poppins', sans-serif;
+    --ff-barlow: 'Barlow', sans-serif;
+    --ff-roboto: 'Roboto', sans-serif;
+    --ff-lora: 'Lora', serif;
+    --ff-poppins: 'Poppins', sans-serif;
 }
 
 body {
-      background-color: var(--prim-color);
-	color: var(--sec-color);
+    background-color: var(--prim-color);
+    color: var(--sec-color);
 }
 
 button {
-      background-color: var(--prim-color);
-      border: none;
+    background-color: var(--prim-color);
+    border: none;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--prim-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sec-color);
 }
