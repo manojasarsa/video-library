@@ -68,7 +68,7 @@ const Login = () => {
                     </label>
 
                     <button className="auth_btn" onClick={(e) => formHandler(e)} >Login</button>
-                    <button className="auth_btn" onClick={(e) => guestLoginHandler(e)} >Guest Login</button>
+                    <button className="auth_btn auth_secondary_btn" onClick={(e) => guestLoginHandler(e)} >Guest Login</button>
 
                     <p className="input_subheading"><Link id="input_subheading" to="/signup"> Sign Up Now</Link> </p>
 

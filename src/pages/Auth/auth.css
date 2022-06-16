@@ -1,6 +1,6 @@
 #auth_container {
     margin: 0 auto;
-    margin-top: 10rem;
+    margin-top: 12rem;
     margin-bottom: 5rem;
     padding-bottom: 1rem;
     box-shadow: none;
@@ -69,6 +69,11 @@ input.input_checkbox {
 	font-family: var(--ff-roboto);
 	border: 1px solid var(--primary-color);
 	background-color: var(--cta-sec-color);
+}
+
+.input_field .auth_secondary_btn {
+    border: 1px solid var(--cta-sec-color);
+    background-color: var(--cta-color);
 }
 
 .forgot_pwd_box {

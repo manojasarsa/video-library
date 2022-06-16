@@ -3,14 +3,15 @@ import { Header } from "../../components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts";
+import { toastHandler } from "../../utils/toastHandler";
 
 const SignUp = () => {
 
-    const [termsAndCondition, setTermsAndCondition] = useState(true);
     const [showHideOne, setShowHideOne] = useState(false);
     const [showHideTwo, setShowHideTwo] = useState(false);
-
-    const { signup } = useAuth();
+    const [error, setError] = useState("");
+    const [errorState, setErrorState] = useState(false);
+    const [termsAndCondition, setTermsAndCondition] = useState(false);
 
     const signUpInputs = {
         firstName:"",
@@ -21,33 +22,43 @@ const SignUp = () => {
     }
 
     const [ formInputs, setFormInputs ] = useState(signUpInputs);
-    const [error, setError] = useState("");
-    const [errorState, setErrorState] = useState(false);
+
+    const { signup } = useAuth();
+
     const {firstName, lastName, email, password, confirmPwd} = formInputs;
-    
-    const formHandler = (e) => {
-        e.preventDefault();
-        if(firstName && lastName && email && password && confirmPwd ) {
-            if(formInputs.password === formInputs.confirmPwd) {
-                signup({firstName, lastName, email, password, setError, setErrorState});
-            }
-            else {
-                setError("Password does not match!");
-                setErrorState(true);
-                setTimeout(() => {
-                    setErrorState(false);
-                }, 3000);
-            }     
-        } else {
-            setError("All fields are required!");
-            setErrorState(true);
-            setTimeout(() => {
-                setErrorState(false);
-            }, 3000);
-        }
-    }
+
+    const regex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
     const toggleTermsCondition = () => termsAndCondition ? setTermsAndCondition(false) : setTermsAndCondition(true);
+    
+    const formHandler = (e) => {
+
+        e.preventDefault();
+
+        if (firstName && lastName && email && password && confirmPwd && termsAndCondition) {
+
+            if (password.length < 8) {
+                setError("Password must be at least 8 characters");
+                
+            } else if (!regex.test(password)) {         // test() search a match bw regex & pwd
+                setError("Required 1 Uppercase, 1 Lowercase letter, 1 Special character, and 1 number");
+
+            } else {
+                if(formInputs.password === formInputs.confirmPwd) {
+                    signup({firstName, lastName, email, password, setError, setErrorState});
+                    setError("Account created!");
+                    toastHandler(setErrorState);
+                }
+                else {
+                    setError("Password does not match!");
+                } 
+            }  
+            toastHandler(setErrorState);   
+        } else {
+            setError("All fields are required!");
+            toastHandler(setErrorState); 
+        }
+    }
 
     return (
         <>
