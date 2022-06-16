@@ -1,21 +1,21 @@
 const categoryReducer = (state, action) => {
-      switch (action.type) {
+    switch (action.type) {
 
-      case "SET_CATEGORY":
+        case "SET_CATEGORY":
             return {
-                  ...state,
-                  categoryName: action.payload,
+                ...state,
+                categoryName: action.payload,
             };
 
-      case "SET_SEARCH_QUERY":
+        case "SET_SEARCH_QUERY":
             return {
-                  ...state,
-                  searchQuery: action.payload,
-      };
+                ...state,
+                searchQuery: action.payload,
+            };
 
-      default:
+        default:
             return state;
-      }
+    }
 };
 
-export {categoryReducer};
+export { categoryReducer };

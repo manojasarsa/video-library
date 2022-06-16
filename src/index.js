@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { BrowserRouter as Router} from "react-router-dom";
-import { VideoProvider, AuthProvider, WatchLaterProvider, HistoryProvider} from "./contexts";
+import { BrowserRouter as Router } from "react-router-dom";
+import { VideoProvider, AuthProvider, WatchLaterProvider, HistoryProvider } from "./contexts";
 import { LikesProvider } from "./contexts/likesContext";
 import { PlaylistProvider } from "./contexts/playlistContext";
 import { CategoryProvider } from "./contexts/categoryContext";
@@ -13,7 +13,7 @@ import { CategoryProvider } from "./contexts/categoryContext";
 makeServer();
 
 ReactDOM.render(
-  <React.StrictMode>
+    <React.StrictMode>
         <Router>
             <CategoryProvider>
                 <VideoProvider>
@@ -22,8 +22,8 @@ ReactDOM.render(
                             <LikesProvider>
                                 <HistoryProvider>
                                     <PlaylistProvider>
-                                        <App /> 
-                                    </PlaylistProvider>   
+                                        <App />
+                                    </PlaylistProvider>
                                 </HistoryProvider>
                             </LikesProvider>
                         </WatchLaterProvider>
@@ -31,6 +31,6 @@ ReactDOM.render(
                 </VideoProvider>
             </CategoryProvider>
         </Router>
-  </React.StrictMode>,
-  document.getElementById("root")
+    </React.StrictMode>,
+    document.getElementById("root")
 );
