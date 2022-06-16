@@ -1,5 +1,5 @@
 import Mockman from "mockman-js";
-import { Home, VideoListing, Playlist, Liked, WatchLater, History, Login, Logout, SignUp, ForgotPwd, SingleVideo, PlaylistVideos} from "../pages";
+import { Home, VideoListing, Playlist, Liked, WatchLater, History, Login, Logout, SignUp, SingleVideo, PlaylistVideos} from "../pages";
 import { Routes, Route } from "react-router-dom";
 import { PrivateRoutes } from "./PrivateRoutes";
 
@@ -47,7 +47,6 @@ const NavRoutes = () => {
                 <Route path="/login" element = {<Login />} />
                 <Route path="/logout" element = {<Logout />} />
                 <Route path="/signup" element = {<SignUp />} />
-                <Route path="/forgotpwd" element = {<ForgotPwd />} />
                 <Route path="/mock" element = {<Mockman />} />
                 <Route path="*" element = { <p>OOPS! Page Not Found</p> } />
           </Routes>

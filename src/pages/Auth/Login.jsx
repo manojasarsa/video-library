@@ -25,6 +25,11 @@ const Login = () => {
         login({email, password, setError, setErrorState});   
     }
 
+    const guestLoginHandler = (e) => {
+        e.preventDefault();
+        login({email: "manojasarsa7611@gmail.com", password: "Manoj@8947", setError, setErrorState});
+    } 
+
     return (
         <>
             <Header />
@@ -62,17 +67,8 @@ const Login = () => {
 
                     </label>
 
-                    <div className="inp_checkbox flex flex_justify_start flex_align_center">
-                        <input 
-                            type="checkbox" 
-                            className="input_checkbox"
-                        /> 
-                        <p className="checkbox_notify">Remember me</p>
-                    </div>
-
                     <button className="auth_btn" onClick={(e) => formHandler(e)} >Login</button>
-
-                    <p className="forgot_pwd_box"><Link className="forgot_pwd" to="/forgotpwd">Forgot your Password?</Link> </p>
+                    <button className="auth_btn" onClick={(e) => guestLoginHandler(e)} >Guest Login</button>
 
                     <p className="input_subheading"><Link id="input_subheading" to="/signup"> Sign Up Now</Link> </p>
 
