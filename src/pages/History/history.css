@@ -1,31 +1,32 @@
 .history_container {
-      margin-top: 10rem;
-      height: 100vh;
+    margin-top: 12rem;
+    height: 100vh;
 }
 
 .clear_all_btn {
-      align-self: center;
-      margin-right: 8rem;
+    align-self: center;
+    margin-right: 8rem;
 }
 
 .delete_all_icon {
-      font-size: 0.8rem;
-      right: 0.5rem;
-      cursor: pointer;
-      color: var(--grey-color);
+    font-size: 0.8rem;
+    right: 0.5rem;
+    cursor: pointer;
+    color: var(--grey-color);
 }
 
 .delete_all_icon:hover {
-      color: var(--white-color);
+    color: var(--white-color);
 }
 
 .clear_all_text {
-      padding-left: 0.4rem;
-      font-size: 0.62rem;
-      color: var(--white-color);
-      font-family: var(--ff-barlow);
+    padding-left: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--white-color);
+    font-family: var(--ff-barlow);
+    font-weight: 600;
 }
 
 .history_list {
-      margin: 3rem 7.8rem 0 6.5rem;
+    margin: 3rem 7.8rem 0 6.5rem;
 }
