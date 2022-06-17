@@ -6,11 +6,6 @@
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
-/* .playlist_container {
-    margin-top: 10rem;
-    height: 100vh;
-} */
-
 .list_wrapper {
     height: 100vh;
     margin: 17rem 7.8rem 0 6.5rem;
@@ -27,6 +22,10 @@
 .music_icon {
     font-size: 5rem;
     color: var(--grey-color);
+}
+
+.playlist_add_btns {
+    gap: 0.5rem;
 }
 
 .add_btn {
@@ -47,7 +46,7 @@
 }
 
 .playlist_text {
-    font-size: 0.8rem;
+    font-size: 1.4rem;
 }
 
 .playlist_title {
@@ -58,6 +57,9 @@
     font-size: 1.3rem;
 }
 
+.listItems_wrapper {
+    margin: 0 7.8rem 0 6.5rem;
+}
 
 /* Modal */
 
@@ -70,44 +72,55 @@
     width: 100%;
     height: 100%;
     z-index: 99;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .7);
 }
 
 .create_playlist_modal {
-    max-width: 45rem;
+    width: 18rem;
+    height: 14rem;
     border-radius: 0.5rem;
-    background-color: var(--auth-color);
+    background-color: var(--grey-color);
+    color: var(--primary-color);
+    border: 1px solid var(--red-color);
+}
+
+.create_playlist_modal .modal_wrapper {
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.modal_close_btn .fa-circle-xmark{
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
 }
 
 .create_playlist_modal .input {
-    border-bottom: 1px solid var(--auth-color);
-    background-color: var(--shadow-color);
+    width: 100%;
+    border: 1px solid var(--primary-color);
     padding: 0.5rem;
-
+    background-color: var(--grey-color);
+    font-weight: 600;
 }
 
-.create_playlist_modal .input:placeholder {
-    color: var(--primary-color);
+.create_playlist_modal input::placeholder {
+    color: var(--prim-color);
+    font-weight: 300;
 }
 
 .create_playlist_modal .create_playlist_btn {
-    padding: 0.5rem;
+    align-self: center;
+    padding: 0.4rem 0; 
     border: 0;
+    border-radius: 8px;
     cursor: pointer;
-    width: 100%;
-    background-color: var(--auth-color);
+    width: 70%;
+    background-color: var(--cta-sec-color);
 }
 
 .create_playlist_modal .icon_circle_plus {
     margin-right: 0.5rem;
     cursor: pointer;
-}
-
-.modal_close_btn {
-    padding: 0.5rem;
-    border-bottom: 1px solid var(--grey-color);
-}
-
-.listItems_wrapper {
-    margin: 0 7.8rem 0 6.5rem;
+    font-size: 0.9rem;
+    color: var(--line-color);
 }

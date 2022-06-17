@@ -95,56 +95,73 @@
     width: 100%;
     height: 100%;
     z-index: 99;
-    background-color: var(--tansparent-color);
+    background-color: rgba(0, 0, 0, .7);
 }
 
 .create_playlist_wrapper {
-    width: 20rem;
-    height: 15rem;
-    margin: 0 1rem;
+    width: 18rem;
+    height: 20rem;
     border-radius: 0.5rem;
-    background-color: var(--auth-color);
+    background-color: var(--grey-color);
+    color: var(--primary-color);
+    border: 1px solid var(--red-color);
 }
 
-.create_playlist_wrapper button {
+.create_playlist_wrapper .modal_wrapper {
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+/* .create_playlist_wrapper button {
     width: 100%;
     cursor: pointer;
     border: none;
     text-align: left;
     background-color: var(--grey-color);
-}
+} */
 
-.create_playlist_wrapper .icons {
+/* .create_playlist_wrapper .icons {
     margin-right: 0.5rem;
-}
+} */
 
-.btn_modal_close {
-    padding: 1rem;
+/* .btn_modal_close {
+    padding: 0rem;
     text-align: right;
     font-size: 1.3rem;
-}
+} */
 
 .lists_playlist {
-    padding: 0.3rem;
+    padding: 1rem;
     height: 5rem;
     margin-top: 1rem;
-    width: 20rem;
+    width: 100%;
+    background-color: var(--light-grey-color);
+    border: 1px solid var(--light-grey-color);
     overflow-y: scroll;
 }
 
-.lists_playlist::-webkit-scrollbar {
+.playlist_list_btns  {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.playlist_list_btns i {
+    font-size: 1rem;
+}
+
+.modal_wrapper .lists_playlist::-webkit-scrollbar {
     color: var(--grey-color);
 }
 
-.lists_playlist .playlist_one {
+/* .lists_playlist .playlist_one {
     padding: 0.5rem;
     margin-bottom: 0.2rem;
-    font-size: 0.7rem;
+    font-size: 1rem;
     cursor: pointer;
     background-color: transparent;
     color: var(--cta-sec-color);
     border-bottom: 1px solid var(--grey-color);
-}
+} */
 
 .input_playlist_wrapper {
     padding: 0 0.3rem;
@@ -171,4 +188,23 @@
 
 .btn_playlist_create .icon_circle_plus {
     color: var(--white-color);
+}
+
+.create_playlist_wrapper .create_playlist_btn {
+    align-self: center;
+    text-align: center;
+    padding: 0.4rem 0; 
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 90%;
+    background-color: var(--cta-sec-color);
+    letter-spacing: 0.1rem;
+}
+
+.create_playlist_wrapper .icon_circle_plus {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    font-size: 0.6rem;
+    color: var(--line-color);
 }

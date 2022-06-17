@@ -13,14 +13,15 @@ const Header = () => {
 
     return (
         <div>
-            <header class="main_header">
-                <div class="navigation nav_add flex flex_justify_between flex_align_center" id="header_box">
+            <header className="main_header">
+                <div className="navigation nav_add flex flex_justify_between flex_align_center" id="header_box">
 
-                    <div class="nav_left logo">
+                    <div className="nav_left logo">
                         <Link className="logo_name" to="/">PLAY NOW </Link>
                     </div>
 
-                    <div className="nav_center searchbar">
+                    <header className="nav_center searchbar">
+
                         <input
                             name="search"
                             value={categoryState.searchQuery}
@@ -30,35 +31,36 @@ const Header = () => {
                             onChange={(e) => categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
                         />
 
-                        <i class="fa-solid fa-magnifying-glass search_icon"
+                        <i className="fa-solid fa-magnifying-glass search_icon"
                             onClick={() => navigate("/videolisting")}>
                         </i>
-                    </div>
 
-                    <div class="nav_right flex flex_justify_between flex_align_center">
+                    </header>
+
+                    <div className="nav_right flex flex_justify_between flex_align_center">
 
                         <NavLink className="nav_btn" to="/videolisting"
-                            style={({ isActive }) => isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' }} >
+                            style={({ isActive }) => isActive ? { color: 'var(--white-color)', fontWeight: 500 } : { color: 'var(--light-grey-color)', fontWeight: 500 }} >
                             EXPLORE
                         </NavLink>
 
                         <NavLink className="nav_btn" to="/playlist"
-                            style={({ isActive }) => isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' }} >
+                            style={({ isActive }) => isActive ? { color: 'var(--white-color)', fontWeight: 500 } : { color: 'var(--light-grey-color)', fontWeight: 500 }} >
                             PLAYLIST
                         </NavLink>
 
                         <NavLink className="nav_btn" to="/liked"
-                            style={({ isActive }) => isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' }} >
+                            style={({ isActive }) => isActive ? { color: 'var(--white-color)', fontWeight: 500 } : { color: 'var(--light-grey-color)', fontWeight: 500 }} >
                             LIKED
                         </NavLink>
 
                         <NavLink className="nav_btn" to="/watchlater"
-                            style={({ isActive }) => isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' }} >
+                            style={({ isActive }) => isActive ? { color: 'var(--white-color)', fontWeight: 500 } : { color: 'var(--light-grey-color)', fontWeight: 500 }} >
                             WATCH LATER
                         </NavLink>
 
                         <NavLink className="nav_btn" to="/history"
-                            style={({ isActive }) => isActive ? { color: 'var(--grey-color)' } : { color: 'var(--white-color)' }} >
+                            style={({ isActive }) => isActive ? { color: 'var(--white-color)', fontWeight: 500 } : { color: 'var(--light-grey-color)', fontWeight: 500 }} >
                             HISTORY
                         </NavLink>
 

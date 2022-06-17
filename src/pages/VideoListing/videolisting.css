@@ -3,21 +3,21 @@
     margin: 13rem 7.8rem 0 6.5rem;
 }
 
+.vid_categories {
+    gap: 3rem;
+}
+
 .nav_categories {
     font-weight: 600;
     cursor: pointer;
     font-size: 1rem;
-    padding: 0 0.3rem;
+    padding: 0.6rem 1rem;
     letter-spacing: 0.1rem;
-    transition: all 0.8s ease-out;
     color: var(--primary-color);
     font-family: var(--ff-barlow);
     background-color: var(--grey-color);
     border: none;
-}
-
-.nav_categories:hover {
-    background-color: var(--line-color);
+    border-radius: 8px;
 }
 
 .videolist {
@@ -26,4 +26,9 @@
     grid-gap: 2.5rem;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     margin-top: 5rem;
+}
+
+.category_active {
+    background-color: var(--red-color);
+    color: white;
 }

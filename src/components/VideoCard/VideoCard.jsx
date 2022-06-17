@@ -110,59 +110,68 @@ const VideoCard = ({ video }) => {
 
                                     {/* PLAYLIST MODAL */}
 
-                                    <div className="playlist_modal_container flex flex_col flex_justify_center flex_align_center"
+                                    <div className="modal_container flex flex_col flex_justify_center flex_align_center"
                                         style={playlistModal === true ? { display: "flex" } : { display: "none" }} >
 
                                         <div className="create_playlist_wrapper" >
 
-                                            <h3 className="space_between btn_modal_close flex flex_justify_between">
+                                            <div className="modal_wrapper flex flex_col flex_justify_center">
 
-                                                Playlist
-                                                <i class="fa-solid fa-circle-xmark icons" onClick={() => setPlaylistModal(false)}></i>
+                                                <div className="modal_close_btn flex flex_justify_between">
 
-                                            </h3>
-
-                                            <div className="lists_playlist flex flex_col">
-
-                                                {playlistState.playlistsItems?.map((data, i) => {
-
-                                                    return data.videos.find((vid) => vid._id === video._id)
-
-                                                        ? (
-                                                            <i className="fa-solid fa-check playlist_one icons icon_circle_plus flex flex_justify_start flex_align_center">
-                                                                {data.title}
-                                                            </i>
-                                                        ) : (
-                                                            <i className="fa-solid fa-plus playlist_one icons icon_circle_plus"
-                                                                key={data._id}
-                                                                onClick={() => addVideoToPlaylist(data._id, video)}>
-                                                                {data.title}
-                                                            </i>
-                                                        );
-                                                })}
-                                            </div>
-
-                                            <div className="add_new_playlist">
-
-                                                <div className="input_playlist_wrapper">
-                                                    <input
-                                                        type="text"
-                                                        className="input"
-                                                        placeholder="Enter Playlist Name"
-                                                        onChange={(e) =>
-                                                            setPlaylistName((prev) => ({
-                                                                ...prev,
-                                                                playlist: e.target.value,
-                                                            }))
-                                                        }
-                                                    />
+                                                    <h3>Playlist</h3>
+                                                    <i class="fa-solid fa-circle-xmark " onClick={() => setPlaylistModal(false)}></i>
                                                 </div>
 
-                                                <button className="btn_playlist_create center" onClick={() => playlistHandler()} >
+                                                <div className="lists_playlist flex flex_col">
 
-                                                    <i class="fa-solid fa-circle-check icon_circle_plus"></i> Create New Playlist
+                                                    {playlistState.playlistsItems?.map((data, i) => {
+
+                                                        return data.videos.find((vid) => vid._id === video._id)
+
+                                                            ? (
+                                                                <div className="playlist_list_btns">
+                                                                    <i className="fa-solid fa-check playlist_one icons icon_circle_plus flex flex_justify_start flex_align_center"></i>
+                                                                    <span className="play_title">{data.title}</span>
+                                                                </div>
+
+                                                            ) : (
+                                                                <div className="playlist_list_btns">
+                                                                    <i className="fa-solid fa-plus playlist_one icons icon_circle_plus"
+                                                                        key={data._id}
+                                                                        onClick={() => addVideoToPlaylist(data._id, video)}>
+                                                                    </i>
+                                                                    <span className="play_title">{data.title}</span>
+                                                                </div>
+                                                            );
+                                                    })}
+                                                </div>
+
+                                                <div className="add_new_playlist">
+
+                                                    <div className="input_playlist_wrapper">
+                                                        <input
+                                                            type="text"
+                                                            className="input"
+                                                            placeholder="Enter Playlist Name"
+                                                            onChange={(e) =>
+                                                                setPlaylistName((prev) => ({
+                                                                    ...prev,
+                                                                    playlist: e.target.value,
+                                                                }))
+                                                            }
+                                                        />
+                                                    </div>
+
+                                                </div>
+                                                <button className="create_playlist_btn flex flex_justify_center" onClick={() => {
+                                                    
+                                                    playlistHandler();
+                                                }} >
+
+                                                    <i class="fa-solid fa-circle-check icon_circle_plus">
+                                                        <span > Create New Playlist</span></i>
                                                 </button>
-
                                             </div>
                                         </div>
                                     </div>

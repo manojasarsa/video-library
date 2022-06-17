@@ -37,15 +37,15 @@ const Playlist = () => {
                                 className="icon_btn create_playlist_btn"
                                 onClick={() => setPlaylistModal(true)}
                             >
-                                <i className="fa-solid fa-plus add_btn">
-                                    <span className="playlist_text">Playlist</span>
-                                </i>
+                                <div className="playlist_add_btns flex flex_align_center">
+                                    <i className="fa-solid fa-plus add_btn"></i>
+                                    <span className="playlist_text add_btn">Playlist</span>
+                                </div>
+
                             </button>
 
                         </div>
                     </div>
-
-
 
                     <div className="playlist_container flex flex_wrap">
                         {playlistState.playlistsItems.map((playlist) => <PlaylistCard key={playlist._id} playlist={playlist} />)}
@@ -63,46 +63,50 @@ const Playlist = () => {
                             className="icon_btn create_playlist_btn"
                             onClick={() => setPlaylistModal(true)}
                         >
-                            <i className="fa-solid fa-plus add_btn">
-                                <span className="playlist_text">Playlist</span>
-                            </i>
+                            <div className="playlist_add_btns flex flex_align_center">
+                                <i className="fa-solid fa-plus add_btn"></i>
+                                <span className="playlist_text add_btn">Playlist</span>
+                            </div>
                         </button>
 
                     </div>
                 </div>
             }
 
+            {/* Playlist Modal */}
+
             <div className="modal_container flex flex_col flex_justify_center flex_align_center" style={playlistModal === true ? { display: "flex" } : { display: "none" }}>
 
                 <div className="create_playlist_modal" >
 
-                    <div className="modal_close_btn flex flex_justify_between">
+                    <div className="modal_wrapper flex flex_col flex_justify_center">
 
-                        <h4 className="">Playlist</h4>
-                        <i class="fa-solid fa-circle-xmark" onClick={() => setPlaylistModal(false)}></i>
+                        <div className="modal_close_btn flex flex_justify_between">
+                            <h2 >Playlist</h2>
+                            <i class="fa-solid fa-circle-xmark" onClick={() => setPlaylistModal(false)}></i>
+                        </div>
 
+                        <div>
+                            <input
+                                type="text"
+                                className="input"
+                                placeholder="Enter Playlist Name"
+                                onChange={(e) =>
+                                    setPlaylistName((prev) => ({
+                                        ...prev,
+                                        playlist: e.target.value,
+                                    }))
+                                }
+                            />
+                        </div>
+
+                        <button
+                            className="create_playlist_btn center flex flex_justify_center"
+                            onClick={() => playlistHandler()}
+                        >
+                            <i className="fa-solid fa-plus add_btn tools_icon icon_circle_plus"> <span > Playlist</span></i>
+                        </button>
                     </div>
-
-                    <div>
-                        <input
-                            type="text"
-                            className="input"
-                            placeholder="Enter Playlist Name"
-                            onChange={(e) =>
-                                setPlaylistName((prev) => ({
-                                    ...prev,
-                                    playlist: e.target.value,
-                                }))
-                            }
-                        />
-                    </div>
-
-                    <button
-                        className="create_playlist_btn center"
-                        onClick={() => playlistHandler()}
-                    >
-                        <i className="fa-solid fa-plus add_btn tools_icon icon_circle_plus"> <span className="playlist_text">Playlist</span></i>
-                    </button>
                 </div>
             </div>
 
