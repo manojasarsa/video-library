@@ -1,5 +1,5 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth, useCategory } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -10,6 +10,10 @@ const Header = () => {
     const { categoryState, categoryDispatch } = useCategory();
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const { pathname } = location;
 
     return (
         <div>
@@ -28,7 +32,11 @@ const Header = () => {
                             className="input input_search search"
                             type="text"
                             placeholder="Search Videos"
-                            onChange={(e) => categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
+                            onChange={(e) => { 
+                                categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
+                                navigate("/videolisting"); 
+                            }}
+                            autoFocus={pathname === "/videolisting"}
                         />
 
                         <i className="fa-solid fa-magnifying-glass search_icon"

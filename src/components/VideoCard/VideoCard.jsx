@@ -1,9 +1,11 @@
 import "./videocard.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth, useLikedList, useWatchLaterList, useHistoryList, usePlaylist } from "../../contexts";
 
 const VideoCard = ({ video }) => {
+
+    const [isCreating, setIsCreating] = useState(false);
 
     const [playlistModal, setPlaylistModal] = useState(false);
 
@@ -17,7 +19,7 @@ const VideoCard = ({ video }) => {
 
     const { historyState, addToHistoryList, removeFromHistoryList } = useHistoryList();
 
-    const { playlistState, createPlaylist, addVideoToPlaylist } = usePlaylist();
+    const { playlistState, createPlaylist, addVideoToPlaylist, deleteVideoFromPlaylist } = usePlaylist();
 
     const { title, vidImage, creator, _id } = video;
 
@@ -31,7 +33,27 @@ const VideoCard = ({ video }) => {
 
     const isHistory = location.pathname === "/history";
 
-    const playlistHandler = () => createPlaylist(playlistName);
+    const playlistHandler = () => {
+        createPlaylist(playlistName);
+        setPlaylistName("");
+        setIsCreating(false);
+    }
+    
+    // const addVideoToPlaylistHandler = () => {
+    //     const lengthOfPlaylists = playlistState.playlistsItems.length - 1;
+    //     const timer = setTimeout(() => {
+    //         let x = playlistState.playlistsItems.map((p) => console.log(p));
+
+    //     }, 3000);
+    //     addVideoToPlaylist( playlistState.playlistsItems[lengthOfPlaylists]._id, video);
+    // }
+
+    // useEffect(() => {
+
+
+    //         addVideoToPlaylist((playlistState.playlistsItems[playlistState.playlistsItems.length - 1])?._id, video);
+        
+    // }, [playlistState.playlistsItems.length]);
 
     const modalHandler = () => setPlaylistModal(true);
 
@@ -123,25 +145,39 @@ const VideoCard = ({ video }) => {
                                                     <i class="fa-solid fa-circle-xmark " onClick={() => setPlaylistModal(false)}></i>
                                                 </div>
 
+                                                {/* List all the playlists available in playListItems array */}
+
                                                 <div className="lists_playlist flex flex_col">
 
-                                                    {playlistState.playlistsItems?.map((data, i) => {
+                                                    {playlistState.playlistsItems?.map((eachPlaylist, i) => {
 
-                                                        return data.videos.find((vid) => vid._id === video._id)
+                                                        // checking all videos in eachPlaylist with the given video if present or not
+
+                                                        return eachPlaylist.videos.find((vid) => vid._id === video._id)
 
                                                             ? (
-                                                                <div className="playlist_list_btns">
-                                                                    <i className="fa-solid fa-check playlist_one icons icon_circle_plus flex flex_justify_start flex_align_center"></i>
-                                                                    <span className="play_title">{data.title}</span>
+                                                                <div className="playlist_list_btns flex flex_align_center">
+                                                                    <i 
+                                                                        className="fa-solid playlist_one fa-check icon_circle_plus"
+                                                                        onClick={() => 
+                                                                            deleteVideoFromPlaylist(eachPlaylist._id, video._id)
+                                                                        }>
+                                                                    </i>
+                                                                    <span className="play_title">
+                                                                        {eachPlaylist.title}
+                                                                    </span>
                                                                 </div>
 
                                                             ) : (
-                                                                <div className="playlist_list_btns">
-                                                                    <i className="fa-solid fa-plus playlist_one icons icon_circle_plus"
-                                                                        key={data._id}
-                                                                        onClick={() => addVideoToPlaylist(data._id, video)}>
+                                                                <div className="playlist_list_btns flex flex_align_center">
+                                                                    <i  
+                                                                        className="fa-solid fa-plus playlist_one icons icon_circle_plus"
+                                                                        key={eachPlaylist._id}
+                                                                        onClick={() => 
+                                                                            addVideoToPlaylist(eachPlaylist._id, video) 
+                                                                        }>
                                                                     </i>
-                                                                    <span className="play_title">{data.title}</span>
+                                                                    <span className="play_title">{eachPlaylist.title}</span>
                                                                 </div>
                                                             );
                                                     })}
@@ -154,23 +190,17 @@ const VideoCard = ({ video }) => {
                                                             type="text"
                                                             className="input"
                                                             placeholder="Enter Playlist Name"
-                                                            onChange={(e) =>
-                                                                setPlaylistName((prev) => ({
-                                                                    ...prev,
-                                                                    playlist: e.target.value,
-                                                                }))
-                                                            }
+                                                            onChange={e => setPlaylistName(e.target.value)} 
                                                         />
                                                     </div>
 
                                                 </div>
-                                                <button className="create_playlist_btn flex flex_justify_center" onClick={() => {
-                                                    
-                                                    playlistHandler();
-                                                }} >
-
+                                                <button className="create_playlist_btn flex flex_justify_center" onClick={() => 
+                                                    playlistHandler()
+                                                }>
                                                     <i class="fa-solid fa-circle-check icon_circle_plus">
-                                                        <span > Create New Playlist</span></i>
+                                                        <span > Create New Playlist</span>
+                                                    </i>
                                                 </button>
                                             </div>
                                         </div>

@@ -47,6 +47,8 @@ const PlaylistProvider = ({ children }) => {
                 }
             );
 
+            console.log("new playlist -", response.data.playlists);
+
             if (response.status === 201) {
                 toast("Playlist created", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
                 playlistDispatch({ type: "CREATE_PLAYLIST", payload: response.data.playlists });
