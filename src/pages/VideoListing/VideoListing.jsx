@@ -79,8 +79,11 @@ const VideoListing = () => {
                 </div>
 
                 <div className="videolist flex flex_wrap">
-                    {getSearchedItem.map((item) =>
-                        <VideoCard key={item._id} video={item} />)}
+                    {!getSearchedItem.length ? 
+                        <h1>No Videos found</h1>
+                    : getSearchedItem.map((item) =>
+                        <VideoCard key={item._id} video={item} />
+                    )}
                 </div>
             </div>
         </div>

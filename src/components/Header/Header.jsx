@@ -2,6 +2,7 @@ import "./header.css";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth, useCategory } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
+import { debounce } from "../../utils/debounce";
 
 const Header = () => {
 
@@ -14,6 +15,13 @@ const Header = () => {
     const location = useLocation();
 
     const { pathname } = location;
+
+    const searchHandler = (e) => { 
+        debounce(() => {
+            categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
+            navigate("/videolisting"); 
+        }, 1000)();
+    } 
 
     return (
         <div>
@@ -28,14 +36,10 @@ const Header = () => {
 
                         <input
                             name="search"
-                            value={categoryState.searchQuery}
                             className="input input_search search"
                             type="text"
-                            placeholder="Search Videos"
-                            onChange={(e) => { 
-                                categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
-                                navigate("/videolisting"); 
-                            }}
+                            placeholder="Search Videos..."
+                            onChange={searchHandler}
                             autoFocus={pathname === "/videolisting"}
                         />
 
