@@ -17,11 +17,30 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
     <title>Video Library</title>
+
+    <style>
+        #preloader {
+        width: 100%;
+        height: 100vh;
+        background: #000 url('./assets/sqrLoader.gif') no-repeat center center;
+        background-size: 20%;
+        z-index: 100;
+        position: fixed;
+    }
+    </style>
+
   </head>
 
-  <body>
+  <body onload="loaderHandler()">
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="preloader"></div>
     <div id="root"></div>
-    
+    <script>
+        let load = document.getElementById("preloader");
+        console.log("load", load);
+        const loaderHandler = () => {
+            load.style.display = "none";
+        }
+    </script>
   </body>
 </html>

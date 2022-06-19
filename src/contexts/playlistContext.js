@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createContext, useReducer, useContext, useEffect } from "react";
+import { createContext, useReducer, useContext, useEffect, useState } from "react";
 import { useAuth } from "./authContext";
 import { playlistReducer } from "../reducer/playlistReducer";
 
@@ -14,6 +14,8 @@ const PlaylistProvider = ({ children }) => {
     const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
         playlistsItems: [],
     });
+
+    const [x, setX] = useState(false);
 
     const { state: { token } } = useAuth();
 
@@ -35,7 +37,7 @@ const PlaylistProvider = ({ children }) => {
             : playlistDispatch({ type: "GET_PLAYLISTS", payload: [] });
     }, [token]);
 
-    const createPlaylist = async (playlistName) => {
+    const createPlaylist = async (playlistName, video) => {
         try {
             const response = await axios.post(
                 "/api/user/playlists",
@@ -47,11 +49,16 @@ const PlaylistProvider = ({ children }) => {
                 }
             );
 
-            console.log("new playlist -", response.data.playlists);
-
             if (response.status === 201) {
                 toast("Playlist created", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
                 playlistDispatch({ type: "CREATE_PLAYLIST", payload: response.data.playlists });
+
+                let lengthOfPlaylists = response.data.playlists.length -1;
+
+
+                if (video) {
+                    await addVideoToPlaylist( response.data.playlists[lengthOfPlaylists]._id, video);
+                }
             }
         } catch (err) {
             console.error("error occurred", err.message);
@@ -110,7 +117,7 @@ const PlaylistProvider = ({ children }) => {
     }
 
     return (
-        <PlaylistContext.Provider value={{ playlistState, playlistDispatch, createPlaylist, deletePlaylist, addVideoToPlaylist, deleteVideoFromPlaylist }}>
+        <PlaylistContext.Provider value={{ playlistState, playlistDispatch, createPlaylist, deletePlaylist, addVideoToPlaylist, deleteVideoFromPlaylist, x }}>
             {children}
         </PlaylistContext.Provider>
     );

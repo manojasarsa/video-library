@@ -5,7 +5,7 @@ import { useAuth, useLikedList, useWatchLaterList, useHistoryList, usePlaylist }
 
 const VideoCard = ({ video }) => {
 
-    const [isCreating, setIsCreating] = useState(false);
+    // const [isCreating, setIsCreating] = useState(false);
 
     const [playlistModal, setPlaylistModal] = useState(false);
 
@@ -19,7 +19,7 @@ const VideoCard = ({ video }) => {
 
     const { historyState, addToHistoryList, removeFromHistoryList } = useHistoryList();
 
-    const { playlistState, createPlaylist, addVideoToPlaylist, deleteVideoFromPlaylist } = usePlaylist();
+    const { playlistState, createPlaylist, addVideoToPlaylist, deleteVideoFromPlaylist, x } = usePlaylist();
 
     const { title, vidImage, creator, _id } = video;
 
@@ -34,9 +34,11 @@ const VideoCard = ({ video }) => {
     const isHistory = location.pathname === "/history";
 
     const playlistHandler = () => {
-        createPlaylist(playlistName);
-        setPlaylistName("");
-        setIsCreating(false);
+        createPlaylist(playlistName, video);
+        // if (x) {
+        //     let lengthOfPlaylists = playlistState.playlistsItems.length ;
+        //     addVideoToPlaylist( playlistState.playlistsItems[lengthOfPlaylists]._id, video);
+        // }
     }
     
     // const addVideoToPlaylistHandler = () => {
@@ -190,7 +192,12 @@ const VideoCard = ({ video }) => {
                                                             type="text"
                                                             className="input"
                                                             placeholder="Enter Playlist Name"
-                                                            onChange={e => setPlaylistName(e.target.value)} 
+                                                            onChange={(e) => 
+                                                                setPlaylistName((prev) => ({
+                                                                    ...prev,
+                                                                    playlist: e.target.value,
+                                                                }))
+                                                            } 
                                                         />
                                                     </div>
 

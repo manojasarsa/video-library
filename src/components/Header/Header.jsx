@@ -1,8 +1,9 @@
 import "./header.css";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth, useCategory } from "../../contexts";
+import { useAuth, useCategory, useVideos } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
 import { debounce } from "../../utils/debounce";
+import { useRef } from "react";
 
 const Header = () => {
 
@@ -10,18 +11,28 @@ const Header = () => {
 
     const { categoryState, categoryDispatch } = useCategory();
 
+    const { videosDispatch } = useVideos();
+
     const navigate = useNavigate();
+
+    const inputBox = useRef(null);
 
     const location = useLocation();
 
     const { pathname } = location;
 
-    const searchHandler = (e) => { 
-        debounce(() => {
+    const searchHandler = e => { 
+
+        // categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
+        // categoryDispatch({ type: "SET_CATEGORY", payload: "all" });
+        
+        if (e.target.value) {
+            debounce(() => {
+            navigate("/videolisting");
             categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
-            navigate("/videolisting"); 
         }, 1000)();
-    } 
+    }
+    };
 
     return (
         <div>
@@ -35,17 +46,18 @@ const Header = () => {
                     <header className="nav_center searchbar">
 
                         <input
+                            // value={categoryState?.searchQuery}
                             name="search"
                             className="input input_search search"
-                            type="text"
+                            type="search"
                             placeholder="Search Videos..."
                             onChange={searchHandler}
-                            autoFocus={pathname === "/videolisting"}
+                            autoFocus={categoryState?.searchQuery && pathname === "/videolisting"}
                         />
 
-                        <i className="fa-solid fa-magnifying-glass search_icon"
+                        {/* <i className="fa-solid fa-magnifying-glass search_icon"
                             onClick={() => navigate("/videolisting")}>
-                        </i>
+                        </i> */}
 
                     </header>
 

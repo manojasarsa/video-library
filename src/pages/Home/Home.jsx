@@ -2,7 +2,6 @@ import "./home.css";
 import { Header } from "../../components";
 import { Link } from "react-router-dom";
 import { useAuth, useCategory } from "../../contexts";
-import { useState } from "react";
 
 const Home = () => {
 
