@@ -3,7 +3,6 @@ import { Header, VideoCard } from "../../components";
 import { useVideos } from "../../contexts";
 import { getFilteredList, searchByName } from "../../utils/filterMethod";
 import { useCategory } from "../../contexts";
-import { useState } from "react";
 
 const VideoListing = () => {
 

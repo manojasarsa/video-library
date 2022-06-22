@@ -1,9 +1,8 @@
 import "./header.css";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth, useCategory, useVideos } from "../../contexts";
+import { useAuth, useCategory } from "../../contexts";
 import { NavLink, useNavigate } from "react-router-dom";
 import { debounce } from "../../utils/debounce";
-import { useRef } from "react";
 
 const Header = () => {
 
@@ -11,11 +10,7 @@ const Header = () => {
 
     const { categoryState, categoryDispatch } = useCategory();
 
-    const { videosDispatch } = useVideos();
-
     const navigate = useNavigate();
-
-    const inputBox = useRef(null);
 
     const location = useLocation();
 

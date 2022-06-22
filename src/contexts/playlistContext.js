@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createContext, useReducer, useContext, useEffect, useState } from "react";
+import { createContext, useReducer, useContext, useEffect } from "react";
 import { useAuth } from "./authContext";
 import { playlistReducer } from "../reducer/playlistReducer";
 
@@ -14,8 +14,6 @@ const PlaylistProvider = ({ children }) => {
     const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
         playlistsItems: [],
     });
-
-    const [x, setX] = useState(false);
 
     const { state: { token } } = useAuth();
 
@@ -117,7 +115,7 @@ const PlaylistProvider = ({ children }) => {
     }
 
     return (
-        <PlaylistContext.Provider value={{ playlistState, playlistDispatch, createPlaylist, deletePlaylist, addVideoToPlaylist, deleteVideoFromPlaylist, x }}>
+        <PlaylistContext.Provider value={{ playlistState, playlistDispatch, createPlaylist, deletePlaylist, addVideoToPlaylist, deleteVideoFromPlaylist }}>
             {children}
         </PlaylistContext.Provider>
     );

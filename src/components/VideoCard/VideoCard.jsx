@@ -1,11 +1,9 @@
 import "./videocard.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth, useLikedList, useWatchLaterList, useHistoryList, usePlaylist } from "../../contexts";
 
 const VideoCard = ({ video }) => {
-
-    // const [isCreating, setIsCreating] = useState(false);
 
     const [playlistModal, setPlaylistModal] = useState(false);
 
@@ -19,7 +17,7 @@ const VideoCard = ({ video }) => {
 
     const { historyState, addToHistoryList, removeFromHistoryList } = useHistoryList();
 
-    const { playlistState, createPlaylist, addVideoToPlaylist, deleteVideoFromPlaylist, x } = usePlaylist();
+    const { playlistState, createPlaylist, addVideoToPlaylist, deleteVideoFromPlaylist } = usePlaylist();
 
     const { title, vidImage, creator, _id } = video;
 
@@ -75,7 +73,7 @@ const VideoCard = ({ video }) => {
 
                                 <div className="creator_box flex">
                                     <div className="channel_name"> {creator} </div>
-                                    <i className="verfiy_icon fa-solid fa-circle-check"></i>
+                                    <i className="fa-solid fa-circle-check"></i>
                                 </div>
 
                                 <div className="icon_box flex flex_justify_between flex_align_center">

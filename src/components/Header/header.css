@@ -9,7 +9,7 @@
     /* padding: 3rem 6rem; */
     padding: 2rem 2rem;
     /* background-color: var(--prim-color); */
-    background-color: var(--auth-color);
+    background-color: var(--auth-color);  
 }
 
 .nav_add {
