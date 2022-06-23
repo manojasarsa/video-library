@@ -1,11 +1,16 @@
 import "./singlevideo.css";
 import * as FaIcons from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
-import { Header } from "../../components";
+import { Header, PlaylistModal } from "../../components";
 import { VideoIframe } from "../../utils/VideoIframe";
 import { useAuth, useLikedList, useWatchLaterList, useVideos } from "../../contexts";
+import { useState } from "react";
 
 const SingleVideo = () => {
+
+    const [playlistModal, setPlaylistModal] = useState(false);
+
+    const [playlistName, setPlaylistName] = useState({ playlist: "" });
 
     const { videoId } = useParams();
 
@@ -24,6 +29,8 @@ const SingleVideo = () => {
     const likedItemExist = likesState.likedItems.find((vid) => vid._id === matchedVideo._id);
 
     const watchLaterItemExist = watchLaterState.watchLaterItems.find((item) => item._id === matchedVideo._id);
+
+    const modalHandler = () => setPlaylistModal(true);
 
     return (
         <div>
@@ -68,7 +75,24 @@ const SingleVideo = () => {
                                             </Link>
                                     }
 
-                                    <FaIcons.FaFolderPlus className="navigate_icons" />
+                                    {/* <FaIcons.FaFolderPlus className="navigate_icons" /> */}
+
+                                    {state.isAuth ? <button className="icon_btn" onClick={() => modalHandler()}>
+                                        <i className="fa fa-folder-plus like_icons"></i>
+                                    </button>
+                                        : <Link to="/login" className="icon_btn" >
+                                            <i className="fa fa-folder-plus like_icons"></i>
+                                        </Link>
+                                    }
+
+                                    <PlaylistModal 
+                                        video={matchedVideo} 
+                                        playlistModal={playlistModal} 
+                                        setPlaylistModal={setPlaylistModal} 
+                                        playlistName={playlistName} 
+                                        setPlaylistName={setPlaylistName}     
+                                    />
+
                                 </div>
                             </h1>
                             <h3 className="creator_name">

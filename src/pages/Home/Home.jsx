@@ -1,5 +1,5 @@
 import "./home.css";
-import { Header } from "../../components";
+import { Footer, Header } from "../../components";
 import { Link } from "react-router-dom";
 import { useAuth, useCategory } from "../../contexts";
 
@@ -7,7 +7,7 @@ const Home = () => {
 
     const { state } = useAuth();
 
-    const { categoryDispatch, getActiveCategory } = useCategory();
+    const { categoryState, categoryDispatch, getActiveCategory } = useCategory();
 
     return (
         <div className="main_container">
@@ -102,9 +102,7 @@ const Home = () => {
 
                 </div>
 
-                <footer>
-                    <h5 className="footer">© 2022 MANOJ ASARSA. All Rights Reserved</h5>
-                </footer>
+                <Footer />
             </div>
         </div>
     );

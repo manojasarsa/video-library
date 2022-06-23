@@ -17,14 +17,11 @@ const Header = () => {
     const { pathname } = location;
 
     const searchHandler = e => { 
-
-        // categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
-        // categoryDispatch({ type: "SET_CATEGORY", payload: "all" });
         
         if (e.target.value) {
             debounce(() => {
-            navigate("/videolisting");
-            categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
+                categoryDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
+                navigate("/videolisting");
         }, 1000)();
     }
     };
@@ -41,18 +38,14 @@ const Header = () => {
                     <header className="nav_center searchbar">
 
                         <input
-                            // value={categoryState?.searchQuery}
+                            defaultValue={categoryState.searchQuery}
                             name="search"
                             className="input input_search search"
-                            type="search"
+                            // type="search"
                             placeholder="Search Videos..."
                             onChange={searchHandler}
                             autoFocus={categoryState?.searchQuery && pathname === "/videolisting"}
                         />
-
-                        {/* <i className="fa-solid fa-magnifying-glass search_icon"
-                            onClick={() => navigate("/videolisting")}>
-                        </i> */}
 
                     </header>
 

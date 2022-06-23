@@ -30,8 +30,6 @@ const VideoCard = ({ video }) => {
 
     const isHistory = location.pathname === "/history";
 
-    
-
     const modalHandler = () => setPlaylistModal(true);
 
     return (

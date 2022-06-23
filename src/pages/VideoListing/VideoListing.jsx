@@ -3,10 +3,11 @@ import { Header, VideoCard } from "../../components";
 import { useVideos } from "../../contexts";
 import { getFilteredList, searchByName } from "../../utils/filterMethod";
 import { useCategory } from "../../contexts";
+import { useEffect } from "react";
 
 const VideoListing = () => {
 
-    const { categoryState, categoryDispatch, getActiveCategory } = useCategory();
+    const { categoryState, categoryDispatch, getActiveCategory, activeClass } = useCategory();
 
     const { videosState } = useVideos();
 
@@ -15,6 +16,12 @@ const VideoListing = () => {
     const filteredList = getFilteredList(videos, categoryState.categoryName);
 
     const getSearchedItem = searchByName(filteredList, categoryState.searchQuery);
+
+    useEffect(() => {
+        if (!activeClass) {
+            getActiveCategory("all");
+        }
+    }, [])
 
     return (
         <div>

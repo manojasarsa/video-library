@@ -1,5 +1,5 @@
 import "./auth.css";
-import { Header } from "../../components";
+import { Footer, Header } from "../../components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts";
@@ -84,6 +84,8 @@ const Login = () => {
             {toastState && <div class="toast flex flex_justify_center flex_align_center toast_active_leading toast_position">
                 <span> {toastMsg} </span>
             </div>}
+
+            <Footer />
         </>
     );
 }

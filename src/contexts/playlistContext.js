@@ -36,30 +36,49 @@ const PlaylistProvider = ({ children }) => {
     }, [token]);
 
     const createPlaylist = async (playlistName, video) => {
-        try {
-            const response = await axios.post(
-                "/api/user/playlists",
-                {
-                    playlist: { title: playlistName.playlist }
-                },
-                {
-                    headers: { authorization: token },
-                }
-            );
 
-            if (response.status === 201) {
-                toast("Playlist created", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
-                playlistDispatch({ type: "CREATE_PLAYLIST", payload: response.data.playlists });
+        if (!playlistName.playlist) {
+            toast("Enter name of playlist", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
+        } else {
 
-                let lengthOfPlaylists = response.data.playlists.length -1;
+            console.log("playlistArray", playlistState.playlistsItems);
+            
+            const samePlaylist = playlistState.playlistsItems?.find((eachPlaylist) => 
+                eachPlaylist.title === playlistName.playlist
+            )
+
+            console.log("samePlaylist", samePlaylist);
+            console.log("newone", playlistName.playlist);
+
+            if (samePlaylist) {
+                toast("Playlist exist with same name", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
+            } else {
+                try {
+                    const response = await axios.post(
+                        "/api/user/playlists",
+                        {
+                            playlist: { title: playlistName.playlist }
+                        },
+                        {
+                            headers: { authorization: token },
+                        }
+                    );
+
+                    if (response.status === 201) {
+                        toast("Playlist created", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
+                        playlistDispatch({ type: "CREATE_PLAYLIST", payload: response.data.playlists });
+
+                        let lengthOfPlaylists = response.data.playlists.length -1;
 
 
-                if (video) {
-                    await addVideoToPlaylist( response.data.playlists[lengthOfPlaylists]._id, video);
+                        if (video) {
+                            await addVideoToPlaylist( response.data.playlists[lengthOfPlaylists]._id, video);
+                        }
+                    }
+                } catch (err) {
+                    console.error("error occurred", err.message);
                 }
             }
-        } catch (err) {
-            console.error("error occurred", err.message);
         }
     };
 

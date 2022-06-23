@@ -1,3 +1,4 @@
+import "./playlistmodal.css";
 import { usePlaylist } from "../../contexts";
 
 export const PlaylistModal = ({ video, playlistModal, setPlaylistModal, playlistName, setPlaylistName }) => {
@@ -18,13 +19,15 @@ export const PlaylistModal = ({ video, playlistModal, setPlaylistModal, playlist
 
                     <div className="modal_close_btn flex flex_justify_between">
 
-                        <h3>Playlist</h3>
+                        <h3 className="modal_heading">Playlist</h3>
                         <i class="fa-solid fa-circle-xmark " onClick={() => setPlaylistModal(false)}></i>
                     </div>
 
                     {/* List all the playlists available in playListItems array */}
 
                     <div className="lists_playlist flex flex_col">
+
+                        {!playlistState.playlistsItems?.length && <h5 className="empty_msg">No playlist available.</h5>}
 
                         {playlistState.playlistsItems?.map((eachPlaylist, i) => {
 
@@ -66,7 +69,7 @@ export const PlaylistModal = ({ video, playlistModal, setPlaylistModal, playlist
                             <input
                                 type="text"
                                 className="input"
-                                placeholder="Enter Playlist Name"
+                                placeholder="Enter Playlist Name.."
                                 onChange={(e) =>
                                     setPlaylistName((prev) => ({
                                         ...prev,

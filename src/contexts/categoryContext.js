@@ -18,14 +18,14 @@ const CategoryProvider = ({ children }) => {
         element.classList.add("category_active");
         setActiveClass(element);
     
-        if (activeClass.classList.contains("category_active")) {
+        if (activeClass.classList?.contains("category_active")) {
             activeClass.classList.remove("category_active");
         }
         element.classList.add("category_active");
     }
 
     return (
-        <CategoryContext.Provider value={{ categoryState, categoryDispatch, getActiveCategory }}>
+        <CategoryContext.Provider value={{ categoryState, categoryDispatch, getActiveCategory, activeClass }}>
             {children}
         </CategoryContext.Provider>
     )
