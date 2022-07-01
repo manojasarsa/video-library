@@ -75,8 +75,6 @@ const SingleVideo = () => {
                                             </Link>
                                     }
 
-                                    {/* <FaIcons.FaFolderPlus className="navigate_icons" /> */}
-
                                     {state.isAuth ? <button className="icon_btn" onClick={() => modalHandler()}>
                                         <i className="fa fa-folder-plus like_icons"></i>
                                     </button>
