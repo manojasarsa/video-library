@@ -1,5 +1,4 @@
 import "./singlevideo.css";
-import * as FaIcons from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { Header, PlaylistModal } from "../../components";
 import { VideoIframe } from "../../utils/VideoIframe";
