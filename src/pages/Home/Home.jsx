@@ -7,7 +7,7 @@ const Home = () => {
 
     const { state } = useAuth();
 
-    const { categoryState, categoryDispatch, getActiveCategory } = useCategory();
+    const { categoryDispatch, getActiveCategory } = useCategory();
 
     return (
         <div className="main_container">

@@ -18,10 +18,11 @@ const VideoListing = () => {
     const getSearchedItem = searchByName(filteredList, categoryState.searchQuery);
 
     useEffect(() => {
+
         if (!activeClass) {
             getActiveCategory("all");
         }
-    }, [])
+    }, [activeClass, getActiveCategory]);
 
     return (
         <div>
