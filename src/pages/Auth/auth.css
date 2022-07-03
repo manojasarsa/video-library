@@ -1,6 +1,6 @@
 #auth_container {
     margin: 0 auto;
-    margin-top: 10rem;
+    margin-top: 12rem;
     margin-bottom: 5rem;
     padding-bottom: 1rem;
     box-shadow: none;
@@ -71,14 +71,9 @@ input.input_checkbox {
 	background-color: var(--cta-sec-color);
 }
 
-.forgot_pwd_box {
-    align-self: center;
-}
-
-.forgot_pwd {
-    padding-top: 1.1rem; 
-    font-size: 0.8rem;
-    color: var(--grey-color);
+.input_field .auth_secondary_btn {
+    border: 1px solid var(--cta-sec-color);
+    background-color: var(--cta-color);
 }
 
 .input_subheading {
@@ -113,20 +108,6 @@ input.input_checkbox {
     color: var(--grey-color);
 }
 
-/* input errors */
-
-.input_box_error {
-    padding: 1rem;
-    background-color: var(--grey-color);
-    border: 1px solid var(--cta-sec-color);
-    color: var(--cta-sec-color);
-}
-
-.input_error {
-    margin-top: 1rem;
-    color: var(--cta-sec-color);
-}
-
 /* logout */
 
 .logout_container {
@@ -144,7 +125,7 @@ input.input_checkbox {
     margin: 1rem;
 }
 
-.input_container .toast {
+.toast {
     display: flex;
     background-color: var(--cta-sec-color);
 }

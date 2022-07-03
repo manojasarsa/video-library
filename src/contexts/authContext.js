@@ -18,23 +18,23 @@ const AuthProvider = ({ children }) => {
     const [customer, setCustomer] = useState("");
     const navigate = useNavigate();
 
-    const signup = async ({firstName, lastName, email, password, setError, setErrorState}) => {
+    const signup = async ({ firstName, lastName, email, password, setError, setErrorState }) => {
         try {
             const response = await axios.post("/api/auth/signup", {
-                firstName: firstName, 
-                lastName: lastName, 
-                email: email, 
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
                 password: password
             });
 
-            if(response.status === 201) {
-                
-                const {fName} = response.data.createdUser;
-                const {encodedToken} = response.data;
+            if (response.status === 201) {
+
+                const { fName } = response.data.createdUser;
+                const { encodedToken } = response.data;
                 setCustomer(response.data.createdUser.firstName);
 
-                localStorage.setItem("jwtToken", JSON.stringify({userName: fName, token: encodedToken, isAuth: true}));
-                dispatch({ type: "LOGIN", payload: {userName: fName, token: encodedToken, isAuth: true },});
+                localStorage.setItem("jwtToken", JSON.stringify({ userName: fName, token: encodedToken, isAuth: true }));
+                dispatch({ type: "LOGIN", payload: { userName: fName, token: encodedToken, isAuth: true }, });
                 navigate("/");
             }
         } catch (err) {
@@ -43,35 +43,35 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const login = async ({email, password, setError, setErrorState}) => {
-        
-        try{
+    const login = async ({ email, password, setError, setErrorState }) => {
+
+        try {
             const response = await axios.post("/api/auth/login", {
-                email: email, 
+                email: email,
                 password: password
             });
-            if(response.status === 200) {
-                const {fName} = response.data.foundUser;
-                const {encodedToken} = response.data;
+            if (response.status === 200) {
+                const { fName } = response.data.foundUser;
+                const { encodedToken } = response.data;
 
-                localStorage.setItem("jwtToken", JSON.stringify({userName: fName, token: encodedToken, isAuth: true}));
-                dispatch({type: "LOGIN", payload: {userName: fName, token: encodedToken, isAuth: true},});
+                localStorage.setItem("jwtToken", JSON.stringify({ userName: fName, token: encodedToken, isAuth: true }));
+                dispatch({ type: "LOGIN", payload: { userName: fName, token: encodedToken, isAuth: true }, });
                 navigate("/");
-             }
+            }
 
-        } catch(err) {
+        } catch (err) {
             setError(err.response.data.errors);
-            setErrorState(true);    
+            setErrorState(true);
         }
     }
-    
-    const logout = async () => { 
-        dispatch({type: "LOGOUT"});
+
+    const logout = async () => {
+        dispatch({ type: "LOGOUT" });
         localStorage.removeItem("jwtToken");
     }
 
     return (
-        <AuthContext.Provider value={{state, dispatch, signup, login, logout, customer, navigate}}>
+        <AuthContext.Provider value={{ state, dispatch, signup, login, logout, customer, navigate }}>
             {children}
         </AuthContext.Provider>
     );

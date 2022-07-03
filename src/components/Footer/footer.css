@@ -1,0 +1,11 @@
+.footer {
+	padding: 3rem 0;
+	font-size: 0.8rem;
+	letter-spacing: 0.1rem;
+	color: var(--grey-color);
+	font-family: var(--ff-roboto);
+    position: absoulte;
+    bottom: 0;
+    left: 50%;
+    /* transform: translate(-50%); */
+}

@@ -1,52 +1,98 @@
 import "./videolisting.css";
-import { Header, VideoCard} from "../../components";
+import { Header, VideoCard } from "../../components";
 import { useVideos } from "../../contexts";
-// import { categoryReducer } from "../../reducer/categoryReducer";
 import { getFilteredList, searchByName } from "../../utils/filterMethod";
-// import { createContext, useState, useEffect, useContext, useReducer } from "react";
-import {useCategory} from "../../contexts";
-
-
+import { useCategory } from "../../contexts";
+import { useEffect } from "react";
 
 const VideoListing = () => {
 
-      const { categoryState, categoryDispatch } = useCategory();
+    const { categoryState, categoryDispatch, getActiveCategory, activeClass } = useCategory();
 
-      const { videosState } = useVideos();
+    const { videosState } = useVideos();
 
-      const { videos } = videosState;
+    const { videos } = videosState;
 
-      const filteredList = getFilteredList(videos, categoryState.categoryName);
+    const filteredList = getFilteredList(videos, categoryState.categoryName);
 
-      const getSearchedItem = searchByName(filteredList, categoryState.searchQuery);
+    const getSearchedItem = searchByName(filteredList, categoryState.searchQuery);
 
-      return (
-            <div>
-                  <Header />
+    useEffect(() => {
 
-                  <div className="videos_container">
-                        <div class="nav_right flex flex_justify_between flex_align_center">
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "ALL"})}
-                                    className="nav_categories" >ALL</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "MUSIC"})}
-                                    className="nav_categories" >MUSIC</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "VLOGS"})}
-                                    className="nav_categories" >VLOGS</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "STANDUP COMEDY"})}
-                                    className="nav_categories" >STANDUP COMEDY</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "SPORTS"})}
-                                    className="nav_categories" >SPORTS</button>
-                              <button onClick={()=> categoryDispatch({ type: "SET_CATEGORY" , payload: "WEB DEV"})}
-                                    className="nav_categories" >WEB DEV</button>
-                        </div>
+        if (!activeClass) {
+            getActiveCategory("all");
+        }
+    }, [activeClass, getActiveCategory]);
 
-                        <div className="videolist flex flex_wrap">
-                              {getSearchedItem.map((item) =>
-                              <VideoCard key={item._id} video={item} />)}
-                        </div>
-                  </div>
+    return (
+        <div>
+            <Header />
+
+            <div className="videos_container">
+                <div class="nav_right flex flex_justify_center flex_align_center vid_categories">
+                    <button  
+                        onClick={() => {
+                            getActiveCategory("all");
+                            categoryDispatch({ type: "SET_CATEGORY", payload: "ALL" })}}
+                        className="nav_categories" id="all">
+                        ALL
+                    </button>
+
+                    <button  
+                        onClick={() => { 
+                            getActiveCategory("music");
+                            categoryDispatch({ type: "SET_CATEGORY", payload: "MUSIC" }); 
+                        }}
+                        className="nav_categories" id="music">
+                        MUSIC
+                    </button>
+
+                    <button  
+                        onClick={() => { 
+                            getActiveCategory("vlogs");
+                            categoryDispatch({ type: "SET_CATEGORY", payload: "VLOGS" }); 
+                        }}
+                        className="nav_categories" id="vlogs">
+                        VLOGS
+                    </button>
+
+                    <button  
+                        onClick={() => { 
+                            getActiveCategory("standup");
+                            categoryDispatch({ type: "SET_CATEGORY", payload: "STANDUP COMEDY" });
+                        }}
+                        className="nav_categories" id="standup">
+                        STANDUP COMEDY
+                    </button>
+
+                    <button  
+                        onClick={() => { 
+                            getActiveCategory("sports");
+                            categoryDispatch({ type: "SET_CATEGORY", payload: "SPORTS" });
+                        }}
+                        className="nav_categories" id="sports">
+                        SPORTS
+                    </button>
+
+                    <button  
+                        onClick={() => { 
+                            getActiveCategory("web");
+                            categoryDispatch({ type: "SET_CATEGORY", payload: "WEB DEV" });
+                        }}
+                        className="nav_categories" id="web">
+                        WEB DEV
+                    </button>
+
+                </div>
+
+                <div className="videolist flex flex_wrap">
+                    {!getSearchedItem.length && <h1 className="text_centered">No Videos found</h1>}
+                    {getSearchedItem.map((item) =>
+                        <VideoCard key={item._id} video={item} />)}
+                </div>
             </div>
-      );
+        </div>
+    );
 }
 
-export {VideoListing};
+export { VideoListing };

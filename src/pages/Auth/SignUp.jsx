@@ -3,51 +3,62 @@ import { Header } from "../../components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts";
+import { toastHandler } from "../../utils/toastHandler";
 
 const SignUp = () => {
 
-    const [termsAndCondition, setTermsAndCondition] = useState(true);
     const [showHideOne, setShowHideOne] = useState(false);
     const [showHideTwo, setShowHideTwo] = useState(false);
-
-    const { signup } = useAuth();
+    const [error, setError] = useState("");
+    const [errorState, setErrorState] = useState(false);
+    const [termsAndCondition, setTermsAndCondition] = useState(false);
 
     const signUpInputs = {
-        firstName:"",
+        firstName: "",
         lastName: "",
         email: "",
         password: "",
         confirmPwd: ""
     }
 
-    const [ formInputs, setFormInputs ] = useState(signUpInputs);
-    const [error, setError] = useState("");
-    const [errorState, setErrorState] = useState(false);
-    const {firstName, lastName, email, password, confirmPwd} = formInputs;
-    
-    const formHandler = (e) => {
-        e.preventDefault();
-        if(firstName && lastName && email && password && confirmPwd ) {
-            if(formInputs.password === formInputs.confirmPwd) {
-                signup({firstName, lastName, email, password, setError, setErrorState});
-            }
-            else {
-                setError("Password does not match!");
-                setErrorState(true);
-                setTimeout(() => {
-                    setErrorState(false);
-                }, 3000);
-            }     
-        } else {
-            setError("All fields are required!");
-            setErrorState(true);
-            setTimeout(() => {
-                setErrorState(false);
-            }, 3000);
-        }
-    }
+    const [formInputs, setFormInputs] = useState(signUpInputs);
+
+    const { signup } = useAuth();
+
+    const { firstName, lastName, email, password, confirmPwd } = formInputs;
+
+    const regex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
     const toggleTermsCondition = () => termsAndCondition ? setTermsAndCondition(false) : setTermsAndCondition(true);
+
+    const formHandler = (e) => {
+
+        e.preventDefault();
+
+        if (firstName && lastName && email && password && confirmPwd && termsAndCondition) {
+
+            if (password.length < 8) {
+                setError("Password must be at least 8 characters");
+
+            } else if (!regex.test(password)) {         // test() search a match bw regex & pwd
+                setError("Required 1 Uppercase, 1 Lowercase letter, 1 Special character, and 1 number");
+
+            } else {
+                if (formInputs.password === formInputs.confirmPwd) {
+                    signup({ firstName, lastName, email, password, setError, setErrorState });
+                    setError("Account created!");
+                    toastHandler(setErrorState);
+                }
+                else {
+                    setError("Password does not match!");
+                }
+            }
+            toastHandler(setErrorState);
+        } else {
+            setError("All fields are required!");
+            toastHandler(setErrorState);
+        }
+    }
 
     return (
         <>
@@ -58,46 +69,46 @@ const SignUp = () => {
                     <h2 className="input_heading">Signup</h2>
 
                     <label className="input_label">First Name<span className="form_label">*</span>
-                        <input 
-                            onChange={(e) => setFormInputs({...formInputs, firstName: e.target.value})}
-                            name= "firstName"
+                        <input
+                            onChange={(e) => setFormInputs({ ...formInputs, firstName: e.target.value })}
+                            name="firstName"
                             value={firstName}
                             className="input_box"
-                            type="text" 
-                            required={true} 
+                            type="text"
+                            required={true}
                         />
                     </label>
 
                     <label className="input_label">Last Name<span className="form_label">*</span>
-                        <input 
-                            onChange={(e) => setFormInputs({...formInputs, lastName: e.target.value})} 
+                        <input
+                            onChange={(e) => setFormInputs({ ...formInputs, lastName: e.target.value })}
                             name="lastName"
-                            value={lastName} 
-                            className="input_box" 
-                            type="text" 
-                            required={true} 
+                            value={lastName}
+                            className="input_box"
+                            type="text"
+                            required={true}
                         />
                     </label>
 
                     <label className="input_label">Email<span className="form_label">*</span>
-                        <input 
-                            onChange={(e) => setFormInputs({...formInputs, email: e.target.value})} 
+                        <input
+                            onChange={(e) => setFormInputs({ ...formInputs, email: e.target.value })}
                             name="email"
-                            value={email} 
-                            className="input_box" 
-                            type="email" 
-                            required={true} 
+                            value={email}
+                            className="input_box"
+                            type="email"
+                            required={true}
                         />
                     </label>
 
                     <label className="input_label">Password<span className="form_label">*</span>
-                        <input 
-                            onChange={(e) => setFormInputs({...formInputs, password: e.target.value})} 
+                        <input
+                            onChange={(e) => setFormInputs({ ...formInputs, password: e.target.value })}
                             name="password"
-                            value={password} 
-                            className="input_box" 
-                            type= {showHideOne ? "text" : "password" }  
-                            required={true} 
+                            value={password}
+                            className="input_box"
+                            type={showHideOne ? "text" : "password"}
+                            required={true}
                         />
 
                         <i class="fa-solid fa-eye show_hide_btn"
@@ -107,13 +118,13 @@ const SignUp = () => {
                     </label>
 
                     <label className="input_label">Confirm Password<span className="form_label">*</span>
-                        <input 
-                            onChange={(e) => setFormInputs({...formInputs, confirmPwd: e.target.value})} 
+                        <input
+                            onChange={(e) => setFormInputs({ ...formInputs, confirmPwd: e.target.value })}
                             name="confirmPwd"
-                            value={confirmPwd} 
-                            className="input_box" 
-                            type= {showHideTwo ? "text" : "password" }  
-                            required={true} 
+                            value={confirmPwd}
+                            className="input_box"
+                            type={showHideTwo ? "text" : "password"}
+                            required={true}
                         />
 
                         <i class="fa-solid fa-eye show_hide_btn"
@@ -123,12 +134,12 @@ const SignUp = () => {
                     </label>
 
                     <div className="inp_checkbox flex flex_justify_start flex_align_center">
-                        <input 
-                        onClick={toggleTermsCondition}
-                            type="checkbox" 
-                            className="input_checkbox" 
+                        <input
+                            onClick={toggleTermsCondition}
+                            type="checkbox"
+                            className="input_checkbox"
                             required={true}
-                        /> 
+                        />
                         <p className="checkbox_notify">I accept all Terms & Conditions</p>
                     </div>
 
@@ -136,15 +147,15 @@ const SignUp = () => {
 
                     <p className="input_subheading"><Link id="input_subheading" to="/login">Already have an account {">"} </Link></p>
 
-                </form>    
+                </form>
 
                 {errorState && <div class="toast flex flex_justify_center flex_align_center toast_active_leading toast_position">
                     <span> {error} </span>
-                </div> }
+                </div>}
 
             </div>
         </>
     );
 }
 
-export {SignUp};
+export { SignUp };

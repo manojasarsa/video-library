@@ -9,88 +9,88 @@ toast.configure();
 const HistoryContext = createContext();
 
 const HistoryProvider = ({ children }) => {
-      
-	const [ historyState, historyDispatch ] = useReducer(historyReducer, {
-		historyItems: [],
-	});
 
-	const { state: { token } } = useAuth();
+    const [historyState, historyDispatch] = useReducer(historyReducer, {
+        historyItems: [],
+    });
 
-	useEffect(() => {
-		token
-		? (async () => {
-			try {
-				const response = await axios.get("/api/user/history", {
-					headers: { authorization: token },
-				});
+    const { state: { token } } = useAuth();
 
-				if (response.status === 200) {
-					historyDispatch({ type: "SET_HISTORY_LIST", payload: response.data.history });
-				}
-				} catch (err) {
-					console.error("error", err);
-				}
-		})()
-		: historyDispatch({ type: "SET_HISTORY_LIST", payload: [] });
-	}, [token]);
+    useEffect(() => {
+        token
+            ? (async () => {
+                try {
+                    const response = await axios.get("/api/user/history", {
+                        headers: { authorization: token },
+                    });
 
-	const addToHistoryList = async (video) => {
-		try {
-			const response = await axios.post(
-			"/api/user/history",
-			{
-				video,
-			},
-			{
-				headers: { authorization: token },
-			}
-			);
+                    if (response.status === 200) {
+                        historyDispatch({ type: "SET_HISTORY_LIST", payload: response.data.history });
+                    }
+                } catch (err) {
+                    console.error("error", err);
+                }
+            })()
+            : historyDispatch({ type: "SET_HISTORY_LIST", payload: [] });
+    }, [token]);
 
-			if (response.status === 201) {
-				historyDispatch({ type: "SET_HISTORY_LIST", payload: response.data.history });
-			}
-		} catch (err) {
-			console.error("error occurred", err.message);
-		}
-	};
+    const addToHistoryList = async (video) => {
+        try {
+            const response = await axios.post(
+                "/api/user/history",
+                {
+                    video,
+                },
+                {
+                    headers: { authorization: token },
+                }
+            );
 
-	const removeFromHistoryList = async (videoId) => {
-	  	try {
-			const response = await axios.delete(`/api/user/history/${videoId}` ,
-			{
-				headers: { authorization: token }
-			});
-
-			if(response.status === 200 ) {
-				toast("Removed from History", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
-				historyDispatch({type: "SET_HISTORY_LIST", payload: response.data.history})
-			}
-	  	} catch(err) {
-		  	console.error("error occured", err.message);
-	  	}
-  	}
-
-      const removeAllHistory = async () => {
-      try {
-            const response = await axios.delete("/api/user/history/all" ,
-            {
-                  headers: { authorization: token }
-            });
-
-            if(response.status === 200 ) {
-			toast("Cleared History", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
-                  historyDispatch({type: "SET_HISTORY_LIST", payload: response.data.history})
+            if (response.status === 201) {
+                historyDispatch({ type: "SET_HISTORY_LIST", payload: response.data.history });
             }
-      } catch(err) {
-            console.error("error occured", err.message);
-      }
-}
+        } catch (err) {
+            console.error("error occurred", err.message);
+        }
+    };
 
-	return (
-	<HistoryContext.Provider value={{ historyState, historyDispatch, addToHistoryList, removeFromHistoryList, removeAllHistory }}>
-	  {children}
-	</HistoryContext.Provider>
-  );
+    const removeFromHistoryList = async (videoId) => {
+        try {
+            const response = await axios.delete(`/api/user/history/${videoId}`,
+                {
+                    headers: { authorization: token }
+                });
+
+            if (response.status === 200) {
+                toast("Removed from History", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
+                historyDispatch({ type: "SET_HISTORY_LIST", payload: response.data.history })
+            }
+        } catch (err) {
+            console.error("error occured", err.message);
+        }
+    }
+
+    const removeAllHistory = async () => {
+        try {
+            const response = await axios.delete("/api/user/history/all",
+                {
+                    headers: { authorization: token }
+                });
+
+            if (response.status === 200) {
+                toast("Cleared History", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
+                historyDispatch({ type: "SET_HISTORY_LIST", payload: response.data.history })
+            }
+        } catch (err) {
+            console.error("error occured", err.message);
+        }
+    }
+
+    return (
+        <HistoryContext.Provider value={{ historyState, historyDispatch, addToHistoryList, removeFromHistoryList, removeAllHistory }}>
+            {children}
+        </HistoryContext.Provider>
+    );
 };
 
 const useHistoryList = () => useContext(HistoryContext);

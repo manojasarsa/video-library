@@ -9,73 +9,73 @@ toast.configure();
 const LikesContext = createContext();
 
 const LikesProvider = ({ children }) => {
-      
-	const [ likesState, likesDispatch ] = useReducer(likesReducer, {
-		likedItems: [],
-	});
 
-	const { state: { token } } = useAuth();
+    const [likesState, likesDispatch] = useReducer(likesReducer, {
+        likedItems: [],
+    });
 
-	useEffect(() => {
-		token
-		? (async () => {
-			try {
-				const response = await axios.get("/api/user/likes", {
-					headers: { authorization: token },
-				});
+    const { state: { token } } = useAuth();
 
-				if (response.status === 200) {
-					likesDispatch({ type: "SET_LIKED_LIST", payload: response.data.likes });
-				}
-				} catch (err) {
-					console.error("error", err);
-				}
-		})()
-		: likesDispatch({ type: "SET_LIKED_LIST", payload: [] });
-	}, [token]);
+    useEffect(() => {
+        token
+            ? (async () => {
+                try {
+                    const response = await axios.get("/api/user/likes", {
+                        headers: { authorization: token },
+                    });
 
-	const addToLikedList = async (video) => {
-		try {
-			const response = await axios.post(
-			"/api/user/likes",
-			{
-				video,
-			},
-			{
-				headers: { authorization: token },
-			}
-			);
+                    if (response.status === 200) {
+                        likesDispatch({ type: "SET_LIKED_LIST", payload: response.data.likes });
+                    }
+                } catch (err) {
+                    console.error("error", err);
+                }
+            })()
+            : likesDispatch({ type: "SET_LIKED_LIST", payload: [] });
+    }, [token]);
 
-			if (response.status === 201) {
-				toast("Added to Liked Videos", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
-				likesDispatch({ type: "SET_LIKED_LIST", payload: response.data.likes });
-			}
-		} catch (err) {
-			console.error("error occurred", err.message);
-		}
-	};
+    const addToLikedList = async (video) => {
+        try {
+            const response = await axios.post(
+                "/api/user/likes",
+                {
+                    video,
+                },
+                {
+                    headers: { authorization: token },
+                }
+            );
 
-	const removeFromLikedList = async (videoId) => {
-	  	try {
-			const response = await axios.delete(`/api/user/likes/${videoId}` ,
-			{
-				headers: { authorization: token }
-			});
+            if (response.status === 201) {
+                toast("Added to Liked Videos", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
+                likesDispatch({ type: "SET_LIKED_LIST", payload: response.data.likes });
+            }
+        } catch (err) {
+            console.error("error occurred", err.message);
+        }
+    };
 
-			if(response.status === 200 ) {
-				toast("Removed from Liked Videos", {position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000});
-				likesDispatch({type: "SET_LIKED_LIST", payload: response.data.likes})
-			}
-	  	} catch(err) {
-		  	console.error("error occured", err.message);
-	  	}
-  	}
+    const removeFromLikedList = async (videoId) => {
+        try {
+            const response = await axios.delete(`/api/user/likes/${videoId}`,
+                {
+                    headers: { authorization: token }
+                });
 
-	return (
-	<LikesContext.Provider value={{ likesState, likesDispatch, addToLikedList, removeFromLikedList }}>
-	  {children}
-	</LikesContext.Provider>
-  );
+            if (response.status === 200) {
+                toast("Removed from Liked Videos", { position: toast.POSITION.BOTTOM_RIGHT, autoClose: 2000 });
+                likesDispatch({ type: "SET_LIKED_LIST", payload: response.data.likes })
+            }
+        } catch (err) {
+            console.error("error occured", err.message);
+        }
+    }
+
+    return (
+        <LikesContext.Provider value={{ likesState, likesDispatch, addToLikedList, removeFromLikedList }}>
+            {children}
+        </LikesContext.Provider>
+    );
 };
 
 const useLikedList = () => useContext(LikesContext);

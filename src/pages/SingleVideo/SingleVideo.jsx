@@ -1,86 +1,107 @@
 import "./singlevideo.css";
-import * as FaIcons from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
-import { Header} from "../../components";
+import { Header, PlaylistModal } from "../../components";
 import { VideoIframe } from "../../utils/VideoIframe";
 import { useAuth, useLikedList, useWatchLaterList, useVideos } from "../../contexts";
+import { useState } from "react";
 
 const SingleVideo = () => {
 
-      const { videoId } = useParams();
+    const [playlistModal, setPlaylistModal] = useState(false);
 
-      const { videosState } = useVideos();
+    const [playlistName, setPlaylistName] = useState({ playlist: "" });
 
-      const { videos } = videosState;
+    const { videoId } = useParams();
 
-      const matchedVideo = videos?.find((vid) => vid._id === videoId);
+    const { videosState } = useVideos();
 
-      const { state } = useAuth();
+    const { videos } = videosState;
 
-      const { likesState, addToLikedList, removeFromLikedList } = useLikedList();
+    const matchedVideo = videos?.find((vid) => vid._id === videoId);
 
-      const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
+    const { state } = useAuth();
 
-      const likedItemExist = likesState.likedItems.find((vid) => vid._id === matchedVideo._id);
+    const { likesState, addToLikedList, removeFromLikedList } = useLikedList();
 
-      const watchLaterItemExist = watchLaterState.watchLaterItems.find((item) => item._id === matchedVideo._id);
+    const { watchLaterState, addToWatchLaterList, removeFromWatchLaterList } = useWatchLaterList();
 
-      return (
-            <div>
-                  <Header />
+    const likedItemExist = likesState.likedItems.find((vid) => vid._id === matchedVideo._id);
 
-                  <div style={{marginTop: "12rem"}} className="single_video_container">
-                        
-                        <div className="single_video_wrapper">
-                              
-                              <div className="video_player">
+    const watchLaterItemExist = watchLaterState.watchLaterItems.find((item) => item._id === matchedVideo._id);
 
-                                    <VideoIframe videoId = {matchedVideo._id}/>
+    const modalHandler = () => setPlaylistModal(true);
 
-                                    <div className="video_info" >
+    return (
+        <div>
+            <Header />
 
-                                          <h1 className="channel_info flex flex_justify_between flex_align_center">
-                                                {matchedVideo?.title}
-                                                
-                                                <div className="nav_icons flex flex_justify_between flex_align_center">
+            <div style={{ marginTop: "12rem" }} className="single_video_container">
 
-                                                      { likedItemExist
-                                                      ? <button className="icon_btns" onClick={() => removeFromLikedList(matchedVideo._id)}>
-                                                            <i className="fa fa-thumbs-up action_icons"></i>
-                                                      </button>
-                                                      : state.isAuth ? <button className="icon_btn" onClick={() => addToLikedList(matchedVideo)}>
-                                                            <i className="far fa-thumbs-up action_icons"></i>
-                                                      </button>
-                                                      : <Link className="icon_btn" to="/login" onClick={() => addToLikedList(matchedVideo)}>
-                                                            <i className="far fa-thumbs-up action_icons"></i>
-                                                      </Link>
-                                                      }
+                <div className="single_video_wrapper">
 
-                                                      { watchLaterItemExist
-                                                      ? <button className="icon_btns" onClick={() => removeFromWatchLaterList(matchedVideo._id)}>
-                                                            <i className="fa fa-clock action_icons"></i>
-                                                      </button>
-                                                      : state.isAuth ? <button className="icon_btn" onClick={() => addToWatchLaterList(matchedVideo)}>
-                                                            <i className="far fa-clock action_icons"></i>
-                                                      </button>
-                                                      : <Link className="icon_btn" to="/login" onClick={() => addToWatchLaterList(matchedVideo)}>
-                                                            <i className="far fa-clock action_icons"></i>
-                                                      </Link>
-                                                      }
+                    <div className="video_player">
 
-                                                      <FaIcons.FaFolderPlus className="navigate_icons" />
-                                                </div>
-                                          </h1>
-                                          <h3 className="creator_name">
-                                                {matchedVideo?.creator}
-                                                <i className="verfied_icon icons fa-solid fa-circle-check"></i>
-                                          </h3>
-                                    </div>
-                              </div>
+                        <VideoIframe videoId={matchedVideo._id} />
+
+                        <div className="video_info" >
+
+                            <h1 className="channel_info flex flex_justify_between flex_align_center">
+                                {matchedVideo?.title}
+
+                                <div className="nav_icons flex flex_justify_between flex_align_center">
+
+                                    {likedItemExist
+                                        ? <button className="icon_btns" onClick={() => removeFromLikedList(matchedVideo._id)}>
+                                            <i className="fa fa-thumbs-up action_icons"></i>
+                                        </button>
+                                        : state.isAuth ? <button className="icon_btn" onClick={() => addToLikedList(matchedVideo)}>
+                                            <i className="far fa-thumbs-up action_icons"></i>
+                                        </button>
+                                            : <Link className="icon_btn" to="/login" onClick={() => addToLikedList(matchedVideo)}>
+                                                <i className="far fa-thumbs-up action_icons"></i>
+                                            </Link>
+                                    }
+
+                                    {watchLaterItemExist
+                                        ? <button className="icon_btns" onClick={() => removeFromWatchLaterList(matchedVideo._id)}>
+                                            <i className="fa fa-clock action_icons"></i>
+                                        </button>
+                                        : state.isAuth ? <button className="icon_btn" onClick={() => addToWatchLaterList(matchedVideo)}>
+                                            <i className="far fa-clock action_icons"></i>
+                                        </button>
+                                            : <Link className="icon_btn" to="/login" onClick={() => addToWatchLaterList(matchedVideo)}>
+                                                <i className="far fa-clock action_icons"></i>
+                                            </Link>
+                                    }
+
+                                    {state.isAuth ? <button className="icon_btn" onClick={() => modalHandler()}>
+                                        <i className="fa fa-folder-plus like_icons"></i>
+                                    </button>
+                                        : <Link to="/login" className="icon_btn" >
+                                            <i className="fa fa-folder-plus like_icons"></i>
+                                        </Link>
+                                    }
+
+                                    <PlaylistModal 
+                                        video={matchedVideo} 
+                                        playlistModal={playlistModal} 
+                                        setPlaylistModal={setPlaylistModal} 
+                                        playlistName={playlistName} 
+                                        setPlaylistName={setPlaylistName}     
+                                    />
+
+                                </div>
+                            </h1>
+                            <h3 className="creator_name">
+                                {matchedVideo?.creator}
+                                <i className="verfied_icon icons fa-solid fa-circle-check"></i>
+                            </h3>
                         </div>
-                  </div>
+                    </div>
+                </div>
             </div>
-      )
+        </div>
+    )
 }
 
-export {SingleVideo};
+export { SingleVideo };

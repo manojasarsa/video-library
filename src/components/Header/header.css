@@ -1,98 +1,105 @@
 .main_header {
-      grid-area: header;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      border-bottom: 0;
-      z-index: 5;
-      padding: 3rem 6rem;
-      background-color: var(--prim-color);
+    grid-area: header;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 0;
+    z-index: 5;
+    padding: 2rem 2rem;
+    background-color: var(--prim-color);
 }
 
 .nav_add {
-      background-color: #0e0e0e;
+    background-color: #0e0e0e;
+}
+
+.navigation .nav_left {
+    margin-left: 0.4rem;
 }
 
 .logo_name {
-      font-size: 0.9rem;
-      letter-spacing: 0.5rem;
-      cursor: pointer;
-      color: var(--cta-prim-color); 
-      font-family: var(--ff-barlow);
-      font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5rem;
+    cursor: pointer;
+    color: var(--cta-prim-color);
+    font-family: var(--ff-barlow);
+    font-weight: 600;
 }
 
-.nav_btn {
-      border: none;
-      cursor: pointer;
-      padding: 0 1rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.1rem;
-      color: var(--white-color);
-      font-family: var(--ff-roboto);
-      background-color: var(--prim-color);
-}
+// Search
 
 .nav_center {
-      flex-basis: 25%;
-      position: relative;
+    flex-basis: 25%;
 }
 
-.header_btn {
-      font-size: 0.9rem;
-      border: 0;
-}
-
-.header .nav_right {
-      flex-basis: 10%;
-}
-
-header .nav_right i  {
-      font-size: 1.5rem;
-      cursor: pointer;
-}
-
-header .nav_right span {
-      font-size: 0.8rem;
-      height: 1.5rem;
-      min-width: 1.5rem;
-      top: -1rem;
-}
-
-#header_box {
-      border: 0;
-}
-
-.nav_right .logout_btn {
-      font-size: 0.8rem;
-}
-
-.input_search {
-      padding: 0.2rem 0.5rem;
-      background-color: var(--prim-color);
-      color: var(--white-color);
-}
-
-.input_search::placeholder {
-      font-size: 0.7rem;
-}
-
-.nav_center .search_icon {
-      position: absolute;
-      font-size: 0.9rem;
-      left: 90%;
-      top: 50%;
-      transform: translate(0, -50%);
-      cursor: pointer;
-      color:  rgb(32, 30, 30);
+.main_header .navigation header {
+    position: relative;
 }
 
 header .search {
-      font-size: 0.8rem;
-      width: 100%;
-      padding: 0.5rem 0.6rem;
-      border-radius: 0;
-      border: none;
-      border: 1px solid rgb(32, 30, 30);
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    margin-top: 0.4rem;
+    color: var(--white-color);
+    background-color: var(--prim-color);
+    border: 1px solid var(--grey-color);
+}
+
+.main_header .navigation .nav_center i {
+    position: absolute;
+    right: 4%;
+    top: 40%;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.input_search::placeholder {
+    font-size: 0.9rem;
+}
+
+// Nav Right
+
+.header_btn {
+    font-size: 0.9rem;
+    border: 0;
+}
+
+.nav_btn {
+    border: none;
+    cursor: pointer;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+    color: var(--white-color);
+    font-family: var(--ff-roboto);
+    background-color: var(--prim-color);
+}
+
+.header .nav_right {
+    flex-basis: 10%;
+}
+
+header .nav_right i {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+header .nav_right span {
+    font-size: 0.8rem;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    top: -1rem;
+}
+
+#header_box {
+    border: 0;
+}
+
+.nav_right .logout_btn {
+    font-size: 1rem;
 }
