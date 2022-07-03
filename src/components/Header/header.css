@@ -27,7 +27,7 @@
     font-weight: 600;
 }
 
-// Search
+/* Search */
 
 .nav_center {
     flex-basis: 25%;
@@ -62,7 +62,7 @@ header .search {
     font-size: 0.9rem;
 }
 
-// Nav Right
+/* Nav Right */
 
 .header_btn {
     font-size: 0.9rem;
